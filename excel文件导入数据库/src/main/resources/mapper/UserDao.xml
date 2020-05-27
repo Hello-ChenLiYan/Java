@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xh.dao.UserDao">
+
+    <resultMap type="com.xh.entity.User" id="UserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="stuNumber" column="stu_number" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="other" column="other" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserMap">
+        select
+          id, stu_number, name, other
+        from test.user
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserMap">
+        select
+          id, stu_number, name, other
+        from test.user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserMap">
+        select
+          id, stu_number, name, other
+        from test.user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="stuNumber != null and stuNumber != ''">
+                and stu_number = #{stuNumber}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="other != null and other != ''">
+                and other = #{other}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into test.user(stu_number, name, other)
+        values (#{stuNumber}, #{name}, #{other})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update test.user
+        <set>
+            <if test="stuNumber != null and stuNumber != ''">
+                stu_number = #{stuNumber},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="other != null and other != ''">
+                other = #{other},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from test.user where id = #{id}
+    </delete>
+
+    <select id="getDataOfExportExcel" resultType="java.util.Map">
+		SELECT
+			id, stu_number, name, other
+		FROM
+			test.user
+	</select>
+
+    <insert id="addMultUser" parameterType="java.util.List">
+        insert into test.user
+        (stu_number, name, other)
+        values
+        <foreach collection="list" item="user" index="index"
+                 separator=",">
+            (
+            #{user.stu_number},
+            #{user.name},
+            #{user.other},
+            )
+        </foreach>
+    </insert>
+
+</mapper>
