@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
     <title>student</title>
@@ -33,13 +33,13 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">班级</label>
                             <div class="layui-input-inline">
-                                <input type="datetime-local" name="className" autocomplete="off" class="layui-input">
+                                <input type="text" name="className" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">备注</label>
                             <div class="layui-input-inline">
-                                <input type="datetime-local" name="remark" autocomplete="off" class="layui-input">
+                                <input type="text" name="remark" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -125,7 +125,7 @@
             var data = obj.data;
             if (obj.event === 'add') {  // 监听添加操作
                 var index = layer.open({
-                    title: '添加管理员',
+                    title: '添加学生',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -184,7 +184,7 @@
             var data = obj.data;
             if (obj.event === 'edit') {
                 var index = layer.open({
-                    title: '编辑管理员',
+                    title: '编辑学生',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,

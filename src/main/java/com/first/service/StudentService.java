@@ -53,7 +53,7 @@ public interface StudentService {
      * @param student 实例对象
      * @return 实例对象
      */
-    Student update(Student student);
+    int update(Student student);
 
     /**
      * 通过主键删除数据
@@ -61,6 +61,6 @@ public interface StudentService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer id);
+    boolean deleteById(List<Integer> id);
 
 }

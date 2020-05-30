@@ -1,5 +1,6 @@
 package com.first.dao;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.first.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -40,9 +41,10 @@ public interface StudentDao {
      * 通过实体作为筛选条件查询
      *
      * @param student 实例对象
+     * @param page 页面
      * @return 对象列表
      */
-    List<Student> queryAll(Student student);
+    List<Student> queryAll(IPage<Student> page, Student student);
 
     /**
      * 新增数据
@@ -50,7 +52,7 @@ public interface StudentDao {
      * @param student 实例对象
      * @return 影响行数
      */
-    int insert(Student student);
+     Student insert(Student student);
 
     /**
      * 批量插入
@@ -70,9 +72,9 @@ public interface StudentDao {
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param ids 主键
      * @return 影响行数
      */
-    int deleteById(Integer id);
+    int deleteById(@Param("ids") List<Integer> ids);
 
 }
