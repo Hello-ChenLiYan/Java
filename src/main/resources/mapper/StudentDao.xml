@@ -26,14 +26,6 @@
         select
           id, name, code, class_name, class_id, mobile, gender, remark
         from boot.student
-        limit #{offset}, #{limit}
-    </select>
-
-    <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="StudentMap">
-        select
-          id, name, code, class_name, class_id, mobile, gender, remark
-        from boot.student
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -58,6 +50,40 @@
             </if>
             <if test="remark != null and remark != ''">
                 and remark = #{remark}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="StudentMap">
+        select
+          id, name, code, class_name, class_id, mobile, gender, remark
+        from boot.student
+        <where>
+            <if test="bean.id != null">
+                and id = #{id}
+            </if>
+            <if test="bean.name != null and bean.name != ''">
+                and name like concat('%', #{bean.name}, '%')
+            </if>
+            <if test="bean.code != null and bean.code != ''">
+                and code = #{bean.code}
+            </if>
+            <if test="bean.className != null and bean.className != ''">
+                and class_name = #{bean.className}
+            </if>
+            <if test="bean.classId != null">
+                and class_id = #{bean.classId}
+            </if>
+            <if test="bean.mobile != null and bean.mobile != ''">
+                and mobile = #{bean.mobile}
+            </if>
+            <if test="bean.gender != null">
+                and gender = #{bean.gender}
+            </if>
+            <if test="bean.remark != null and bean.remark != ''">
+                and remark = #{bean.remark}
             </if>
         </where>
     </select>
@@ -107,7 +133,10 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from boot.student where id = #{id}
+        delete from boot.student where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
     </delete>
 
 </mapper>

@@ -33,16 +33,19 @@ public class StudentServiceImpl implements StudentService {
         return this.studentDao.queryById(id);
     }
 
+
+    /**
+     * 查询多条数据
+     *
+     * @param offset 查询起始位置
+     * @param limit 查询条数
+     * @return 对象列表
+     */
     @Override
     public IPage<Student> queryAllByLimit(int offset, int limit, Student bean) {
         Page<Student> page = new Page<>(offset, limit);
         QueryWrapper<Student> wrapper = new QueryWrapper();
-        wrapper.like("name", bean.getName())
-                .eq("mobile", bean.getMobile())
-
-
         page.setRecords(studentDao.queryAll(page, bean));
-
         return page;
     }
 
@@ -70,19 +73,14 @@ public class StudentServiceImpl implements StudentService {
      * @return 实例对象
      */
     @Override
-    public Student update(Student student) {
-        this.studentDao.update(student);
-        return this.queryById(student.getId());
+    public int update(Student student) {
+
+        return this.studentDao.update(student);
     }
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param id 主键
-     * @return 是否成功
-     */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.studentDao.deleteById(id) > 0;
+    public boolean deleteById(List<Integer> ids) {
+        return this.studentDao.deleteById(ids) > 0;
     }
+
 }
