@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.first.dao.AdminDao">
+
+    <resultMap type="com.first.entity.Admin" id="AdminMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="account" column="account" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="regDate" column="reg_date" jdbcType="TIMESTAMP"/>
+        <result property="lastLoginDate" column="last_login_date" jdbcType="TIMESTAMP"/>
+        <result property="isAllow" column="is_allow" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AdminMap">
+        select
+          id, account, password, mobile, reg_date, last_login_date, is_allow
+        from boot.admin
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AdminMap">
+        select
+        id, account, password, mobile, reg_date, last_login_date, is_allow
+        from boot.admin
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="account != null and account != ''">
+                and account = #{account}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and mobile = #{mobile}
+            </if>
+            <if test="regDate != null">
+                and reg_date = #{regDate}
+            </if>
+            <if test="lastLoginDate != null">
+                and last_login_date = #{lastLoginDate}
+            </if>
+            <if test="isAllow != null">
+                and is_allow = #{isAllow}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AdminMap">
+        select
+        id, account, password, mobile, reg_date, last_login_date, is_allow
+        from boot.admin
+        <where>
+            <if test="bean.id != null">
+                and id = #{bean.id}
+            </if>
+            <if test="bean.account != null and bean.account != ''">
+                and account like concat('%', #{bean.account}, '%')
+            </if>
+            <if test="bean.password != null and bean.password != ''">
+                and password = #{bean.password}
+            </if>
+            <if test="bean.mobile != null and bean.mobile != ''">
+                and mobile = #{bean.mobile}
+            </if>
+            <if test="bean.startTime != null and bean.startTime != ''">
+                and reg_date &gt;= #{bean.startTime}
+            </if>
+            <if test="bean.endTime != null and bean.endTime != ''">
+                and reg_date &lt;= #{bean.endTime}
+            </if>
+            <if test="bean.lastLoginDate != null">
+                and last_login_date = #{bean.lastLoginDate}
+            </if>
+            <if test="bean.isAllow != null">
+                and is_allow = #{bean.isAllow}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into boot.admin(account, password, mobile, reg_date, last_login_date, is_allow)
+        values (#{account}, #{password}, #{mobile}, #{regDate}, #{lastLoginDate}, #{isAllow})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update boot.admin
+        <set>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="lastLoginDate != null">
+                last_login_date = #{lastLoginDate},
+            </if>
+            <if test="isAllow != null">
+                is_allow = #{isAllow},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from boot.admin where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="login" resultMap="AdminMap">
+        select
+        id, account, password, mobile, reg_date, last_login_date, is_allow
+        from boot.admin
+        <where>
+            <if test="account != null and account != ''">
+                and account = #{account}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            and is_allow = 1
+        </where>
+        limit 1;
+    </select>
+
+</mapper>

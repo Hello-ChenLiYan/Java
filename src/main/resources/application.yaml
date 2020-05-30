@@ -1,0 +1,12 @@
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+spring:
+  datasource:
+    password: 123
+    username: root
+    url: jdbc:mysql://DESKTOP-5FCGF56:3306/boot?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    suffix: .html
