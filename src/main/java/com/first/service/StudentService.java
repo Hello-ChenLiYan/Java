@@ -1,8 +1,6 @@
 package com.first.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.first.entity.Admin;
-import com.first.entity.AdminQuery;
 import com.first.entity.Student;
 import java.util.List;
 
@@ -62,5 +60,12 @@ public interface StudentService {
      * @return 是否成功
      */
     boolean deleteById(List<Integer> id);
+
+    /**
+     * 查询所有
+     * @param bean 组件
+     * @return 所有数据
+     */
+    List<Student> queryAll(Student bean);
 
 }

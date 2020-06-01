@@ -40,11 +40,11 @@ public interface StudentDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param student 实例对象
+     * @param bean 实例对象
      * @param page 页面
      * @return 对象列表
      */
-    List<Student> queryAll(IPage<Student> page, Student student);
+    List<Student> queryAll(IPage<Student> page, Student bean);
 
     /**
      * 新增数据

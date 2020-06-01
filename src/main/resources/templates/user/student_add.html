@@ -33,6 +33,20 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label required">班级名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="className" lay-verify="required" lay-reqtext="班级名称不能为空" placeholder="请输入班级名称"
+                       th:value="*{className}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">班级Id</label>
+            <div class="layui-input-block">
+                <input type="number" name="classId" lay-verify="required" lay-reqtext="班级Id不能为空" placeholder="请输入班级Id"
+                       th:value="*{classId}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label required">联系方式</label>
             <div class="layui-input-block">
                 <input type="number" name="mobile" lay-verify="required" lay-reqtext="联系方式不能为空" placeholder="请输入联系方式"
@@ -49,7 +63,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">备注</label>
             <div class="layui-input-block">
-                <input type="number" name="remark"  placeholder="请备注好相关信息"
+                <input type="text" name="remark"  placeholder="请备注好相关信息"
                        th:value="*{remark}" class="layui-input">
             </div>
         </div>

@@ -1,6 +1,5 @@
 package com.first.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.first.entity.Student;
@@ -30,6 +29,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public Student queryById(Integer id) {
+
         return this.studentDao.queryById(id);
     }
 
@@ -44,7 +44,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public IPage<Student> queryAllByLimit(int offset, int limit, Student bean) {
         Page<Student> page = new Page<>(offset, limit);
-        QueryWrapper<Student> wrapper = new QueryWrapper();
         page.setRecords(studentDao.queryAll(page, bean));
         return page;
     }
@@ -83,4 +82,6 @@ public class StudentServiceImpl implements StudentService {
         return this.studentDao.deleteById(ids) > 0;
     }
 
+    @Override
+    public List<Student> queryAll(Student bean) { return null; }
 }

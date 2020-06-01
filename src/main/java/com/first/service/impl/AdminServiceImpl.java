@@ -45,7 +45,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public IPage<Admin> queryAllByLimit(int offset, int limit, AdminQuery bean) {
         Page<Admin> page = new Page<>(offset, limit);
-        QueryWrapper<Admin> wrapper = new QueryWrapper();
+        QueryWrapper<Admin> wrapper = new QueryWrapper<>();
         wrapper.like("account", bean.getAccount())
                 .eq("mobile", bean.getMobile())
                 .gt("reg_date", bean.getStartTime())
