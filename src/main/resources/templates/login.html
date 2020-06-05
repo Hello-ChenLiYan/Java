@@ -29,9 +29,10 @@
                     <div class="layui-form-item logo-title">
                         <h1>Sign In To Admin</h1>
                     </div>
+                    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                     <div class="layui-form-item">
                         <label class="layui-icon layui-icon-username" for="username"></label>
-                        <input type="text" name="account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input" value="">
+                        <input type="text" name="account" placeholder="帐号" autocomplete="off" class="layui-input" value="">
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-icon layui-icon-password" for="password"></label>

@@ -68,7 +68,7 @@ public class AdminController {
      * @return 相对应页面
      */
     @PostMapping("login")
-    public String login(String account, String password, Model model,HttpSession session) {
+    public String login( @RequestParam("account") String account, String password, Model model,HttpSession session) {
         Admin admin = adminService.login(account, password);
         if (admin == null) {
             //登录不成功
@@ -81,6 +81,7 @@ public class AdminController {
 
         //将用户信息存入到session
         session.setAttribute("admin",admin);
+        session.setAttribute("loginUser",account);
         return "index";
     }
 
