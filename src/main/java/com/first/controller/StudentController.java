@@ -78,7 +78,13 @@ public class StudentController {
         return true;
     }
 
+    /**
+     *
+     * @param model student实体类
+     * @return 页面
+     */
     @RequestMapping("toAdd")
+    //@RequestMapping("/")
     public String toAdd(Model model) {
         model.addAttribute("bean", new Student());
         return "user/student_add";

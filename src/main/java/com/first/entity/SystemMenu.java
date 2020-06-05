@@ -1,5 +1,8 @@
 package com.first.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,11 +12,13 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-28 09:33:47
  */
+@Table("boot.system_menu")
 public class SystemMenu implements Serializable {
     private static final long serialVersionUID = -84335113364900318L;
     /**
     * ID
     */
+    @Id
     private Integer id;
     /**
     * 父ID
@@ -157,4 +162,7 @@ public class SystemMenu implements Serializable {
         this.deleteAt = deleteAt;
     }
 
+    public long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 }

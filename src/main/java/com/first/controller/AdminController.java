@@ -142,6 +142,7 @@ public class AdminController {
         }
 
         return result;
+
     }
 
     @PostMapping("deleteById")
@@ -168,8 +169,5 @@ public class AdminController {
 
         return "user/admin_add";
     }
-
-
-
 
 }

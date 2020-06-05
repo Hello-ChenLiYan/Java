@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
-    <title>student</title>
+    <title>Menu_List</title>
     <div th:replace="~{common::css}"></div>
 </head>
 <body>
@@ -12,30 +12,18 @@
         <fieldset class="table-search-fieldset">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
-                <form class="layui-form layui-form-pane" action="">
+                <form class="layui-form layui-form-pane" action="" method="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">姓名</label>
+                            <label class="layui-form-label">菜单名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="name" autocomplete="off" class="layui-input">
+                                <input type="text" name="title" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">学号</label>
+                            <label class="layui-form-label">父Id</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="code" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">班级</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="className" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">备注</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="remark" autocomplete="off" class="layui-input">
+                                <input type="number" name="pid" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -51,7 +39,7 @@
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
                 <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
-                <button class="layui-btn layui-btn-sm" id="btn_import" > 导入Excel </button>
+
             </div>
         </script>
         <div th:replace="~{common::lineOperation}"></div>
@@ -60,28 +48,33 @@
 </div>
     <div th:replace="~{common::js}"></div>
     <script>
-        layui.use(['form', 'table', 'upload'], function () {
+        layui.use(['form', 'table'], function () {
             var $ = layui.jquery,
                 form = layui.form,
-                upload = layui.upload,
                 table = layui.table;//获取当前页面所有的table
 
             var columns = [
                 {type: "checkbox", width: 50},
                 {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'name', width: 80, title: '姓名'},
-                {field: 'code', minWidth: 80, title: '学号'},
-                {field: 'className', minWidth: 100, title: '班级名称', sort: true},
-                {field: 'classId', title: '班级ID',minWidth: 100,sort: true},
-                {field: 'mobile', title: '手机号', minWidth: 100,sort: true},
-                {field: 'gender', width: 110, title: '性别', sort: true},
-                {field: 'remark', title: '备注', minWidth: 100,sort: true},
+                {field: 'pid', width: 80, title: '父ID'},
+                {field: 'title', minWidth: 80, title: '名称'},
+                {field: 'href', minWidth: 100, title: '链接', sort: true},
+                {field: 'sort', title: '序号',minWidth: 100,sort: true},
+                {field: 'status', title: '状态', minWidth: 100,templet:function (d) {
+                          if (d.status === 1){
+                              return "启用";
+                          }
+                          else{
+                              return "停用";
+                          }
+                }},
+                {field: 'remark', width: 110, title: '备注', sort: true},
                 {title:'操作',minWidth: 140,toolbar:'#currentTableBar',align:"center"}
             ];
 
             table.render({
                 elem: '#currentTableId',//指定table的id
-                url: '/student/queryAll',
+                url: '/systemMenu/queryAll',
                 toolbar: '#toolbarDemo',
                 defaultToolbar: ['filter', 'exports', 'print', {
                     title: '提示',
@@ -116,13 +109,13 @@
                 var data = obj.data;
                 if (obj.event === 'add') {  // 监听添加操作
                     var index = layer.open({
-                        title: '添加学生',
+                        title: '添加菜单',
                         type: 2,
                         shade: 0.2,
                         maxmin:true,
                         shadeClose: true,
                         area: ['100%', '100%'],
-                        content: '/student/toAdd',
+                        content: '/systemMenu/toAdd',
                         end: function () {
                             table.reload('currentTableId', {
                                 page: {
@@ -149,7 +142,7 @@
                     // layer.confirm("");
                     layer.confirm("是否删除id为" + ids+ "数据?", {icon: 3, title:"提示"}, function(index){
                         //do something
-                        $.post("/student/deleteById", {
+                        $.post("/systemMenu/deleteById", {
                             ids: ids
                         }, function (data) {
                             if (data == true) {
@@ -175,13 +168,13 @@
                 var data = obj.data;
                 if (obj.event === 'edit') {
                     var index = layer.open({
-                        title: '编辑学生',
+                        title: '编辑菜单',
                         type: 2,
                         shade: 0.2,
                         maxmin:true,
                         shadeClose: true,
                         area: ['100%', '100%'],
-                        content: '/student/toEdit?id=' + data.id,
+                        content: '/systemMenu/toEdit?id=' + data.id,
                         end: function () {
                             table.reload('currentTableId', {
                                 page: {
@@ -200,18 +193,6 @@
                         obj.del();
                         layer.close(index);
                     });
-                }
-            });
-
-
-            upload.render({ //允许上传的文件后缀
-                elem: '#btn_import' //绑定到哪个元素上
-                ,url: '/student/upload' //改成您自己的上传接口
-                ,accept: 'file' //普通文件
-                ,exts: 'xlsx' //只允许上传压缩文件
-                ,done: function(res){
-                    layer.msg('上传成功');
-                    console.log(res)
                 }
             });
         });

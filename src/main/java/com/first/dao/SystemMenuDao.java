@@ -1,5 +1,6 @@
 package com.first.dao;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.first.entity.SystemMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Mapper
 @Repository
-public interface SystemMenuDao {
+public interface SystemMenuDao extends BaseDao<SystemMenu> {
 
     /**
      * 通过ID查询单条数据
@@ -30,26 +31,20 @@ public interface SystemMenuDao {
      *
      * @param offset 查询起始位置
      * @param limit 查询条数
+     * @param bean 实体
      * @return 对象列表
      */
-    List<SystemMenu> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    IPage<SystemMenu> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit,SystemMenu bean);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param systemMenu 实例对象
+     * @param page 实例对象
+     * @param bean 实例对象
      * @return 对象列表
      */
-    List<SystemMenu> queryAll(SystemMenu systemMenu);
-
-    /**
-     * 新增数据
-     *
-     * @param systemMenu 实例对象
-     * @return 影响行数
-     */
-    int insert(SystemMenu systemMenu);
+    List<SystemMenu> queryAll(IPage<SystemMenu> page, SystemMenu bean);
 
     /**
      * 修改数据
@@ -58,13 +53,5 @@ public interface SystemMenuDao {
      * @return 影响行数
      */
     int update(SystemMenu systemMenu);
-
-    /**
-     * 通过主键删除数据
-     *
-     * @param id 主键
-     * @return 影响行数
-     */
-    int deleteById(Integer id);
 
 }

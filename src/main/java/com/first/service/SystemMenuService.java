@@ -1,5 +1,6 @@
 package com.first.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.first.entity.SystemMenu;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +26,10 @@ public interface SystemMenuService {
      *
      * @param offset 查询起始位置
      * @param limit 查询条数
+     * @param bean 实体
      * @return 对象列表
      */
-    List<SystemMenu> queryAllByLimit(int offset, int limit);
+    IPage<SystemMenu> queryAllByLimit(int offset, int limit, SystemMenu bean);
 
     /**
      * 新增数据
@@ -48,15 +50,15 @@ public interface SystemMenuService {
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param ids 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer id);
+    boolean deleteById(List<Integer> ids);
 
     /**
      * 查询所有
      * @return 所有数据
      */
-    public Map<String, Object> queryAll();
+    Map<String, Object> queryAll();
 
 }

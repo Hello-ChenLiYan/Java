@@ -68,7 +68,7 @@
                 and name like concat('%', #{bean.name}, '%')
             </if>
             <if test="bean.code != null and bean.code != ''">
-                and code = #{bean.code}
+                and code like concat('%', #{bean.code}, '%')
             </if>
             <if test="bean.className != null and bean.className != ''">
                 and class_name = #{bean.className}

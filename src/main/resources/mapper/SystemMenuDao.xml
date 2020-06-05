@@ -30,7 +30,43 @@
         select
           id, pid, title, icon, href, target, sort, status, remark, create_at, update_at, delete_at
         from boot.system_menu
-        limit #{offset}, #{limit}
+        <where>
+            <if test="bean.id != null">
+                and id = #{bean.id}
+            </if>
+            <if test="bean.pid != null">
+                and pid = #{bean.pid}
+            </if>
+            <if test="bean.title != null and bean.title != ''">
+                and title = #{bean.title}
+            </if>
+            <if test="bean.icon != null and bean.icon != ''">
+                and icon = #{icon}
+            </if>
+            <if test="bean.href != null and bean.href != ''">
+                and href = #{bean.href}
+            </if>
+            <if test="bean.target != null and bean.target != ''">
+                and target = #{bean.target}
+            </if>
+            <if test="bean.sort != null">
+                and sort = #{bean.sort}
+            </if>
+            and status = 1
+            <if test="bean.remark != null and bean.remark != ''">
+                and remark = #{bean.remark}
+            </if>
+            <if test="bean.createAt != null">
+                and bean.create_at = #{bean.createAt}
+            </if>
+            <if test="bean.updateAt != null">
+                and bean.update_at = #{bean.updateAt}
+            </if>
+            <if test="bean.deleteAt != null">
+                and bean.delete_at = #{bean.deleteAt}
+            </if>
+        </where>
+        order by sort desc
     </select>
 
     <!--通过实体作为筛选条件查询-->
@@ -39,94 +75,41 @@
           id, pid, title, icon, href, target, sort, status, remark, create_at, update_at, delete_at
         from boot.system_menu
         <where>
-            <if test="id != null">
-                and id = #{id}
+            <if test="bean.id != null">
+                and id = #{bean.id}
             </if>
-            <if test="pid != null">
-                and pid = #{pid}
+            <if test="bean.pid != null">
+                and pid = #{bean.pid}
             </if>
-            <if test="title != null and title != ''">
-                and title = #{title}
+            <if test="bean.title != null and bean.title != ''">
+                and title = #{bean.title}
             </if>
-            <if test="icon != null and icon != ''">
+            <if test="bean.icon != null and bean.icon != ''">
                 and icon = #{icon}
             </if>
-            <if test="href != null and href != ''">
-                and href = #{href}
+            <if test="bean.href != null and bean.href != ''">
+                and href = #{bean.href}
             </if>
-            <if test="target != null and target != ''">
-                and target = #{target}
+            <if test="bean.target != null and bean.target != ''">
+                and target = #{bean.target}
             </if>
-            <if test="sort != null">
-                and sort = #{sort}
+            <if test="bean.sort != null">
+                and sort = #{bean.sort}
             </if>
                 and status = 1
-            <if test="remark != null and remark != ''">
-                and remark = #{remark}
+            <if test="bean.remark != null and bean.remark != ''">
+                and remark = #{bean.remark}
             </if>
-            <if test="createAt != null">
-                and create_at = #{createAt}
+            <if test="bean.createAt != null">
+                and bean.create_at = #{bean.createAt}
             </if>
-            <if test="updateAt != null">
-                and update_at = #{updateAt}
+            <if test="bean.updateAt != null">
+                and bean.update_at = #{bean.updateAt}
             </if>
-            <if test="deleteAt != null">
-                and delete_at = #{deleteAt}
+            <if test="bean.deleteAt != null">
+                and bean.delete_at = #{bean.deleteAt}
             </if>
         </where>
         order by sort desc
     </select>
-
-    <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into boot.system_menu(pid, title, icon, href, target, sort, status, remark, create_at, update_at, delete_at)
-        values (#{pid}, #{title}, #{icon}, #{href}, #{target}, #{sort}, #{status}, #{remark}, #{createAt}, #{updateAt}, #{deleteAt})
-    </insert>
-
-    <!--通过主键修改数据-->
-    <update id="update">
-        update boot.system_menu
-        <set>
-            <if test="pid != null">
-                pid = #{pid},
-            </if>
-            <if test="title != null and title != ''">
-                title = #{title},
-            </if>
-            <if test="icon != null and icon != ''">
-                icon = #{icon},
-            </if>
-            <if test="href != null and href != ''">
-                href = #{href},
-            </if>
-            <if test="target != null and target != ''">
-                target = #{target},
-            </if>
-            <if test="sort != null">
-                sort = #{sort},
-            </if>
-            <if test="status != null">
-                status = #{status},
-            </if>
-            <if test="remark != null and remark != ''">
-                remark = #{remark},
-            </if>
-            <if test="createAt != null">
-                create_at = #{createAt},
-            </if>
-            <if test="updateAt != null">
-                update_at = #{updateAt},
-            </if>
-            <if test="deleteAt != null">
-                delete_at = #{deleteAt},
-            </if>
-        </set>
-        where id = #{id}
-    </update>
-
-    <!--通过主键删除-->
-    <delete id="deleteById">
-        delete from boot.system_menu where id = #{id}
-    </delete>
-
 </mapper>

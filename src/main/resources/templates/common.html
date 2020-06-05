@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公共部分</title>
+    <div th:fragment="css">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" th:href="@{/layui-v2.5.5/css/layui.css}" media="all">
+        <link rel="stylesheet" th:href="@{/css/public.css}" media="all">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" th:href="@{/css/layuimini.css?v=2.0.4.2}" media="all">
+        <link rel="stylesheet" th:href="@{/css/themes/default.css}" media="all">
+        <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}" media="all">
+        <!--[if lt IE 9]>
+        <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </div>
+</head>
+<body>
+    <div th:fragment="js">
+        <script th:src="@{/jquery-3.4.1/jquery-3.4.1.min.js}" charset="utf-8"></script>
+        <script th:src="@{/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+        <script th:src="@{/jq-module/jquery.particleground.min.js}" charset="utf-8"></script>
+        <script th:src="@{/js/lay-config.js?v=1.0.4}" charset="utf-8"></script>
+    </div>
+    <div th:fragment="lineOperation">
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete" >删除</a>
+        </script>
+    </div>
+</body>
+</html>

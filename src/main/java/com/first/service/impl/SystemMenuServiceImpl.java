@@ -1,5 +1,7 @@
 package com.first.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.first.entity.MenuVo;
 import com.first.entity.SystemMenu;
 import com.first.dao.SystemMenuDao;
@@ -43,8 +45,10 @@ public class SystemMenuServiceImpl implements SystemMenuService {
      * @return 对象列表
      */
     @Override
-    public List<SystemMenu> queryAllByLimit(int offset, int limit) {
-        return this.systemMenuDao.queryAllByLimit(offset, limit);
+    public IPage<SystemMenu> queryAllByLimit(int offset, int limit, SystemMenu bean) {
+        Page<SystemMenu> page = new Page<>(offset, limit);
+        page.setRecords(systemMenuDao.queryAll(page, bean));
+        return page;
     }
 
     /**
@@ -55,6 +59,8 @@ public class SystemMenuServiceImpl implements SystemMenuService {
      */
     @Override
     public SystemMenu insert(SystemMenu systemMenu) {
+        systemMenu.setStatus(1);
+        systemMenu.setTarget("_self");
         this.systemMenuDao.insert(systemMenu);
         return systemMenu;
     }
@@ -74,20 +80,36 @@ public class SystemMenuServiceImpl implements SystemMenuService {
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param ids 主键
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.systemMenuDao.deleteById(id) > 0;
+    public boolean deleteById(List<Integer> ids) {
+
+        if (ids == null || ids.size() == 0) {
+            return false;
+        }
+
+        StringBuffer sb = new StringBuffer("id in (");
+        for (Integer item : ids) {
+            sb.append("'");
+            sb.append(item);
+            sb.append(",");
+            //整型可以这样做，如果是字符串，会造成sql注入攻击
+        }
+        sb.deleteCharAt(sb.lastIndexOf(","));
+        sb.append(")");
+        return this.systemMenuDao.delete("boot.system_menu","") > 0;
     }
 
     @Override
     public Map<String, Object> queryAll() {
+        Page<SystemMenu> page = new Page<>();
+        SystemMenu bean = new SystemMenu();
         Map<String, Object> map = new HashMap<>(16);
         Map<String,Object> home = new HashMap<>(16);
         Map<String,Object> logo = new HashMap<>(16);
-        List<SystemMenu> menuList = systemMenuDao.queryAll(null);
+        List<SystemMenu> menuList = systemMenuDao.queryAll(page,bean);
         List<MenuVo> menuInfo = new ArrayList<>();
         for (SystemMenu e : menuList) {
             MenuVo menuVO = new MenuVo();
@@ -101,13 +123,13 @@ public class SystemMenuServiceImpl implements SystemMenuService {
         }
         map.put("menuInfo", TreeUtil.toTree(menuInfo, 0));
         home.put("title","首页");
-        home.put("href","/admin/toWelcome");
+        home.put("href","welcome");
         //控制器路由,自行定义
         logo.put("title","后台管理系统");
-        logo.put("image","images/back.jpg");
+        logo.put("image","images/logo.png");
         //静态资源文件路径,可使用默认的logo.png
-        map.put("homeInfo", "{title: '首页',href: '/admin/toWelcome'}}");
-        map.put("logoInfo", "{title: 'RUGE ADMIN',image: 'images/logo.png'}");
+        map.put("homeInfo", "{title: '首页',href: 'welcome'}");
+        map.put("logoInfo", "{title: 'RUGE ADMIN',image:'images/logo.png'}");
         return map;
     }
 }

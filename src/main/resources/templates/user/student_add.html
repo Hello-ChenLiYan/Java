@@ -3,11 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Student</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" th:href="@{/layui-v2.5.5/css/layui.css}" media="all">
-    <link rel="stylesheet" th:href="@{/css/public.css}" media="all">
+    <div th:replace="~{common::css}"></div>
     <style>
         body {
             background-color: #ffffff;
@@ -74,7 +70,7 @@
         </div>
     </form>
 </div>
-<script th:src="@{/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<div th:replace="~{common::js}"></div>
 <script>
     layui.use(['form'], function () {
         var form = layui.form,
