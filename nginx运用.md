@@ -1,6 +1,6 @@
 两种方式：
 
-1.centos启动docker服务
+1.在centos系统中启动docker服务
 
 ​    systemctl start docker
 
