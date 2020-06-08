@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>laboratory</title>
+    <div th:replace="~{common::css}"></div>
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <form class="layui-form" action="" method="post" th:object="${bean}">
+        <input type="hidden" th:value="*{id}" name="id">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="student" lay-verify="required" lay-reqtext="姓名不能为空" placeholder="请输入姓名"
+                       th:value="*{student}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">实验室名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="laboratory" lay-verify="required" lay-reqtext="实验室不能为空" placeholder="请输入实验室"
+                       th:value="*{laboratory}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">课程名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="course" lay-verify="required" lay-reqtext="课程不能为空" placeholder="请输入课程"
+                       th:value="*{course}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">任课教师</label>
+            <div class="layui-input-block">
+                <input type="text" name="teacher"  placeholder="请输入任课教师"
+                       th:value="*{teacher}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">备注</label>
+            <div class="layui-input-block">
+                <input type="text" name="remark"  placeholder="请输入备注"
+                       th:value="*{remark}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div th:replace="~{common::js}"></div>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            console.log(data);
+            //使用Jquery的ajax提交数据
+            $.post("/laboratory/save", data.field, function (data) {
+                console.log(data);
+            });
+            // 关闭弹出层
+            layer.close();
+            var iframeIndex = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(iframeIndex);
+        });
+        return false;
+    });
+</script>
+</body>
+</html>

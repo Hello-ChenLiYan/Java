@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.first.dao.LaboratoryDao">
+
+    <resultMap type="com.first.entity.Laboratory" id="LaboratoryMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="student" column="student" jdbcType="VARCHAR"/>
+        <result property="laboratory" column="laboratory" jdbcType="VARCHAR"/>
+        <result property="course" column="course" jdbcType="VARCHAR"/>
+        <result property="teacher" column="teacher" jdbcType="VARCHAR"/>
+        <result property="starttime" column="startTime" jdbcType="TIMESTAMP"/>
+        <result property="endtime" column="endTime" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="LaboratoryMap">
+        select
+          id, student, laboratory, course, teacher, startTime, endTime,remark
+        from boot.laboratory
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="LaboratoryMap">
+        select
+          id, student, laboratory, course, teacher, startTime, endTime,remark
+        from boot.laboratory
+        <where>
+            <if test="bean.id != null">
+                and id = #{bean.id}
+            </if>
+            <if test="bean.student != null and bean.student != ''">
+                and student = #{bean.student}
+            </if>
+            <if test="bean.laboratory != null and bean.laboratory != ''">
+                and laboratory = #{bean.laboratory}
+            </if>
+            <if test="bean.course != null and bean.course != ''">
+                and course = #{course}
+            </if>
+            <if test="bean.teacher != null and bean.teacher != ''">
+                and teacher = #{bean.teacher}
+            </if>
+            <if test="bean.starttime != null">
+                and startTime = #{bean.starttime}
+            </if>
+            <if test="bean.endtime != null">
+                and endTime = #{bean.endtime}
+            </if>
+            <if test="bean.remark != null and bean.remark != ''">
+                and remark = #{bean.remark}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LaboratoryMap">
+        select
+          id, student, laboratory, course, teacher, startTime, endTime,remark
+        from boot.laboratory
+        <where>
+            <if test="bean.id != null">
+                and id = #{bean.id}
+            </if>
+            <if test="bean.student != null and bean.student != ''">
+                and student like concat('%', #{bean.student},'%')
+            </if>
+            <if test="bean.laboratory != null and bean.laboratory != ''">
+                and laboratory like concat('%',#{bean.laboratory},'%')
+            </if>
+            <if test="bean.course != null and bean.course != ''">
+                and course like concat('%',#{course},'%')
+            </if>
+            <if test="bean.teacher != null and bean.teacher != ''">
+                and teacher like concat('%',#{bean.teacher},'%')
+            </if>
+            <if test="bean.starttime != null">
+                and startTime = #{bean.starttime}
+            </if>
+            <if test="bean.endtime != null">
+                and endTime = #{bean.endtime}
+            </if>
+            <if test="bean.remark != null and bean.remark != ''">
+                and remark = #{bean.remark}
+            </if>
+        </where>
+    </select>
+</mapper>
