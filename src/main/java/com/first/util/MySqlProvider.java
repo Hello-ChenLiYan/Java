@@ -16,8 +16,13 @@ public class MySqlProvider {
 
     public static final String INSERT = "insert";
     public static final String DELETE = "delete";
+    public static final String UPDATE = "update";
 
-    //插入
+    /**
+     * 插入
+     * @param obj 对象
+     * @return 数据
+     */
     public static String insert(Object obj){
         //获取表名
         String table = getTableName(obj);
@@ -35,7 +40,9 @@ public class MySqlProvider {
         }.toString();
     }
 
-    //批量删除
+    /**
+     *  批量删除
+     */
     public static String delete(String table, String where){
         if (StringUtils.isEmpty(table)){
             return null;
@@ -49,6 +56,25 @@ public class MySqlProvider {
             {
                 DELETE_FROM(table);
                 WHERE(where);
+            }
+        }.toString();
+    }
+
+    public static String update(Object obj) {
+        Map<String, String> map = new HashMap<>();
+        String table = getTableName(obj);
+        String idName = getMap(obj, map);
+        if (StringUtils.isEmpty(idName)) {
+            throw new RuntimeException("实体类->" + obj.getClass().getCanonicalName() + "必须有@Id注解");
+        }
+
+        return new SQL(){
+            {
+                UPDATE(table);
+                for (String key : map.keySet()) {
+                    SET(key + "=" + map.get(key));
+                }
+                WHERE(idName + "=" + map.get(idName));
             }
         }.toString();
     }

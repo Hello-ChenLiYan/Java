@@ -29,4 +29,7 @@ public interface BaseDao<T> {
      */
     @DeleteProvider(type = MySqlProvider.class, method = MySqlProvider.DELETE)
     int delete(@Param("table") String table,@Param("where")  String where);
+
+    @UpdateProvider(type = MySqlProvider.class, method = MySqlProvider.UPDATE)
+    int update(T bean);
 }
