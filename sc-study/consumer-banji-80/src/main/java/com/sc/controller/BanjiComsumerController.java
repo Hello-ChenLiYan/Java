@@ -21,7 +21,7 @@ public class BanjiComsumerController {
     private RestTemplate restTemplate;
     //提供一些便利的方法直接访问http请求
 
-    private String urlPrefix = "http://localhost:8001";
+    private String urlPrefix = "http://provider-banji";
 
     @RequestMapping("insert")
     public ResponseEntity<Boolean> insert(Banji bean) {
