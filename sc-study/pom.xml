@@ -13,6 +13,7 @@
         <module>consumer-banji-80</module>
         <module>provider-banji-8001</module>
         <module>eureka-server</module>
+        <module>proxy-zuul</module>
     </modules>
 
     <!--版本号管理-->
@@ -70,7 +71,6 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>2.1.14.RELEASE</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
