@@ -82,19 +82,21 @@ public class UserServiceImpl implements UserService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(List<Integer> ids) {
-        if (ids == null || ids.size() == 0){
-            return false;
-        }
-        StringBuffer sb = new StringBuffer("id in (");
-        for(Integer item : ids){
-            sb.append("'");
-            sb.append(item);
-            sb.append("',");
-        }
-        sb.deleteCharAt(sb.lastIndexOf(","));
-        sb.append(")");
-
-        return userDao.delete("flower.user",sb.toString()) > 0;
+    public boolean delete(List<Integer> ids) {
+//        if (ids == null || ids.size() == 0){
+//            return false;
+//        }
+//        StringBuffer sb = new StringBuffer("id in (");
+//        for(Integer item : ids){
+//            sb.append("'");
+//            sb.append(item);
+//            sb.append("',");
+//        }
+//        sb.deleteCharAt(sb.lastIndexOf(","));
+//        sb.append(")");
+//        System.out.println("where后面的判断句 " + sb.toString());
+//        String table = "flower.user";
+//        String where = sb.toString();
+        return userDao.delete(ids) > 0;
     }
 }

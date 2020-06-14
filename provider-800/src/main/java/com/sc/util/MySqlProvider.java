@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class MySqlProvider {
 
     public static final String INSERT = "insert";
@@ -18,6 +19,7 @@ public class MySqlProvider {
     private static String getTableName(Object obj){
         Class c = obj.getClass();
         Table table = (Table) c.getAnnotation(Table.class);
+        System.out.println("table名字:::"+table);
         if (table != null) {
             return table.value();
         }
@@ -71,9 +73,13 @@ public class MySqlProvider {
     }
 
     public static String delete(String table,String where) {
-        if (StringUtils.isEmpty(table) || StringUtils.isEmpty(where)) {
+        System.out.println("table::" + table);
+        System.out.println("where::" + where);
+        if (StringUtils.isEmpty(table) || StringUtils.isEmpty(where))
+        {
             return null;
         }
+
         return new SQL(){
             {
                 DELETE_FROM(table);

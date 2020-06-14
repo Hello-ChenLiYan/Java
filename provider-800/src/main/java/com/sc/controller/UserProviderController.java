@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -66,13 +67,17 @@ public class UserProviderController {
         return result;
     }
 
-    @DeleteMapping("deleteById/{ids}")
-    @ResponseBody
+    @RequestMapping("deleteById/{ids}")
+   // @RequestMapping(value = "deleteById/{ids}",method = RequestMethod.POST)
     public boolean deleteById(@PathVariable Integer[] ids) {
 
-        if (ids == null || ids.length == 0) {
+        if (ids == null || ids.length ==0 ) {
             return false;
         }
-        return userService.deleteById(Arrays.asList(ids));
+        System.out.println("ids:: "+Arrays.asList(ids));
+        userService.delete(Arrays.asList(ids));
+        return true;
+
+        //return userService.deleteById(ids);
     }
 }

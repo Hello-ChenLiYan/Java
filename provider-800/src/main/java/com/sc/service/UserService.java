@@ -53,6 +53,6 @@ public interface UserService {
      * @param ids 主键
      * @return 是否成功
      */
-    boolean deleteById(List<Integer> ids);
+    boolean delete(List<Integer> ids);
 
 }

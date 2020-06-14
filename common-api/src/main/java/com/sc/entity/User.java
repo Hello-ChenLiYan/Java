@@ -1,5 +1,7 @@
 package com.sc.entity;
 
+import com.sc.annotation.Id;
+import com.sc.annotation.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,14 +19,15 @@ import java.io.Serializable;
  */
 @Data
 @ToString
-@Accessors(chain = true)
+@Accessors//(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@Table("flower.user")
 public class User implements Serializable {
-    private static final long serialVersionUID = 799506910586781606L;
     /**
     * 用户ID
     */
+    @Id
     private Integer id;
     /**
     * 用户账号
@@ -37,7 +40,7 @@ public class User implements Serializable {
     /**
     * 昵称
     */
-    private String name;
+    private String pickName;
     /**
     * 年龄
     */

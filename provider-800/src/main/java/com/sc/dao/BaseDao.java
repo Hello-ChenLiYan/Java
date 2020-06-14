@@ -12,7 +12,7 @@ public interface BaseDao<T> {
     int insert(T bean);
 
     @DeleteProvider(type = MySqlProvider.class,method = MySqlProvider.DELETE)
-    int delete(@Param("table")String table,@Param("where")String where);
+    int delete(@Param("table") String table,@Param("where") String where);
 
     @UpdateProvider(type = MySqlProvider.class,method = MySqlProvider.UPDATE)
     int update(T bean);

@@ -37,19 +37,19 @@ public class UserConsumerController {
 
     @RequestMapping("queryById/{id}")
     public Object queryById(@PathVariable Integer id) {
-        String uri = urlPrefix +  "/user/queryById" + id;
-        return restTemplate.getForObject(uri, List.class);
+        String uri = urlPrefix +  "/user/queryById/" + id;
+        return restTemplate.getForObject(uri, User.class);
     }
 
     @RequestMapping("deleteById/{id}")
     public void deleteById(@PathVariable Integer id){
-        String uri = urlPrefix + "/user/deleteById" + id;
+        String uri = urlPrefix + "/user/deleteById/" + id;
         restTemplate.delete(uri);
     }
 
-    @RequestMapping("updateById")
+    @RequestMapping("updateById/{id}")
     public ResponseEntity<User> updateById(@PathVariable Integer id,User bean){
-        String uri = urlPrefix + "/user/save" + id;
+        String uri = urlPrefix + "/user/save/" + id;
         return restTemplate.postForEntity(uri,bean,User.class);
     }
 }

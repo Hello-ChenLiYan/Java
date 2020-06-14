@@ -23,7 +23,7 @@
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "name",
+    "name" : "pickname",
     "comment" : null,
     "type" : null,
     "shortType" : null,
