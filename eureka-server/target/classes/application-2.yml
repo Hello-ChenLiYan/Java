@@ -1,0 +1,17 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: r2 #一般是写域名
+  client:
+    fetch-registry: false #指定是否要从注册中⼼获取服务（注册中⼼不需要开启）
+    register-with-eureka: false #指定是否要注册到注册中⼼（注册中⼼不需要开启）
+    service-url:
+      #http://localhost:8761/eureka/
+      defaultZone: http://r1:7001/eureka/
+
