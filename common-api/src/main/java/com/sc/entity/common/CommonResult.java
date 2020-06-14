@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true) //链式写法
 @NoArgsConstructor //添加无参
-public class CommonResult {
+public class CommonResult<T> {
 
     private int code;
     private String msg;

@@ -1,8 +1,8 @@
 package com.sc.util;
 
+import org.apache.ibatis.jdbc.SQL;
 import com.sc.annotation.Id;
 import com.sc.annotation.Table;
-import org.apache.ibatis.jdbc.SQL;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
