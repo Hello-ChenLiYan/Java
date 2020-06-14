@@ -154,11 +154,6 @@
     </update>
 
     <!--通过主键删除-->
-<!--    <delete id="deleteById">-->
-<!--        delete from flower.user where id = #{id}-->
-<!--    </delete>-->
-
-    <!--通过主键删除-->
     <delete id="delete">
         delete from flower.user where id in
         <foreach collection="ids" item="id" open="(" close=")" separator=",">
