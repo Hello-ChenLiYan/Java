@@ -63,12 +63,18 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Override
+    /*@Override
     public User update(User user) {
         this.userDao.update(user);
         return this.queryById(user.getId());
     }
-
+*/
+    
+    @Override
+    public boolean update(User user) {
+        this.userDao.update(user);
+        return true;
+    }
 
     /**
      * 通过主键删除数据
