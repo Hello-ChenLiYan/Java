@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="consumer" />
-        <module name="eureka-server" />
         <module name="common-api" />
         <module name="provider-800" />
+        <module name="consumer-admin-8801" />
+        <module name="provider-admin-8001" />
+        <module name="eureka-server" />
+        <module name="consumer" />
       </profile>
     </annotationProcessing>
   </component>
