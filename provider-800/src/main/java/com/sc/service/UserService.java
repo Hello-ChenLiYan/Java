@@ -1,5 +1,9 @@
 package com.sc.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.sc.entity.User;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -52,5 +56,7 @@ public interface UserService {
      * @return 是否成功
      */
     boolean delete(List<Integer> ids);
+
+    User login(String account, String password);
 
 }

@@ -3,11 +3,10 @@ package com.sc.controller;
 import com.sc.entity.User;
 import com.sc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.List;
-
 
 /**
  * 用户管理表(User)表控制层
@@ -79,5 +78,12 @@ public class UserProviderController {
         return true;
 
         //return userService.deleteById(ids);
+    }
+
+    @RequestMapping("login")
+    @ResponseBody
+    public Object login(@RequestParam("account") String account, @RequestParam("password") String password, User bean){
+        System.out.println("account:::"+ account + "，password:::" + password);
+        return userService.login(account, password);
     }
 }

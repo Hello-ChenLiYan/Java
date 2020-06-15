@@ -57,7 +57,7 @@ public interface UserDao {
      * @param user 实例对象
      * @return 影响行数
      */
-    int update(User user);
+    boolean update(User user);
 
     /**
      * 通过主键删除数据
@@ -66,6 +66,8 @@ public interface UserDao {
      * @return 影响行数
      */
     int delete(@Param("ids") List<Integer> ids);
+
+    User login(@Param("account") String account,@Param("password") String password);
 
 
 }

@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public IPage<User> queryAllByLimit(int offset, int limit,User bean) {
-        Page<User> page = new Page<>(offset,limit);
+        IPage<User> page = new Page<>(offset,limit);
         page.setRecords(this.userDao.queryAllByLimit(offset, limit, bean));
         return page;
     }
@@ -64,9 +64,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(User user) {
+    public boolean update(User user) {
         this.userDao.update(user);
-        return this.queryById(user.getId());
+        this.queryById(user.getId());
+        return true;
     }
 
 
@@ -79,5 +80,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean delete(List<Integer> ids) {
         return userDao.delete(ids) > 0;
+    }
+
+    @Override
+    public User login(String account, String password) {
+        return userDao.login(account, password);
     }
 }

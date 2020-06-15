@@ -16,12 +16,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="common-api" target="11" />
-      <module name="consumer" target="11" />
-      <module name="consumer-flower-8803" target="11" />
+      <module name="common-api" target="1.8" />
+      <module name="consumer" target="1.8" />
+      <module name="consumer-flower-8803" target="1.8" />
       <module name="eureka-server" target="11" />
-      <module name="provider-800" target="1.5" />
-      <module name="provider-flower-8003" target="11" />
+      <module name="provider-800" target="11" />
+      <module name="provider-flower-8003" target="1.8" />
       <module name="spring-cloud-02" target="1.8" />
     </bytecodeTargetLevel>
   </component>

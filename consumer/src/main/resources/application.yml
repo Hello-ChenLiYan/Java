@@ -17,3 +17,11 @@ info:
 spring:
   application:
     name: consumer-user
+---
+spring:
+  thymeleaf:
+    suffix: .html
+    servlet:
+      content-type: text/html
+    mode: LEGACYHTML5
+    cache: false

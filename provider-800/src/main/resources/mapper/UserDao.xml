@@ -161,4 +161,18 @@
         </foreach>
     </delete>
 
+    <select id="login" resultMap="UserMap">
+        select  *
+        from flower.user
+        <where>
+            <if test="account != null and account != ''">
+                and account = #{account}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+        </where>
+        limit 1;
+    </select>
+
 </mapper>
