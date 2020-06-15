@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.dao.FlowerDao">
+
+    <resultMap type="com.sc.entity.Flower" id="FlowerMap" autoMapping="true">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="baseSql">
+        id, name, type, stock, price, flo_mean, photo
+    </sql>
+
+    <!--查询单个-->
+    <select id="getByName" resultMap="FlowerMap">
+        select
+        <include refid="baseSql"></include>
+        from florist.flower
+        where name = #{name}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="FlowerMap">
+        select
+        <include refid="baseSql"></include>
+        from florist.flower
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="stock != null">
+                and stock = #{stock}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="floMean != null and floMean != ''">
+                and flo_mean = #{floMean}
+            </if>
+            <if test="photos != null and photos != ''">
+                and photos = #{photos}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="FlowerMap">
+        select
+        <include refid="baseSql"></include>
+        from florist.flower
+        <where>
+            <if test="bean.id != null">
+                and id = #{bean.id}
+            </if>
+            <if test="bean.name != null and bean.name != ''">
+                and name like concat('%',#{bean.name},'%')
+            </if>
+            <if test="bean.type != null and bean.type != ''">
+                and type = #{bean.type}
+            </if>
+            <if test="bean.floMean != null and bean.floMean != ''">
+                and flo_mean = #{bean.floMean}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryById" resultMap="FlowerMap">
+        select
+        <include refid="baseSql"></include>
+        from florist.flower
+        where id = #{id}
+    </select>
+
+    <delete id="delete">
+        delete
+        from florist.flower
+        where id in
+        <foreach item="id" collection="id" open="(" close=")" separator="," >
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

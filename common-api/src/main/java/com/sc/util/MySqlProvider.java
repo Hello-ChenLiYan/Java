@@ -1,9 +1,8 @@
-/*
 package com.sc.util;
 
+import org.apache.ibatis.jdbc.SQL;
 import com.sc.annotation.Id;
 import com.sc.annotation.Table;
-import org.apache.ibatis.jdbc.SQL;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -12,7 +11,7 @@ import java.util.Map;
 public class MySqlProvider {
 
     public static final String INSERT = "insert";
-   // public static final String DELETE = "delete";
+    public static final String DELETE = "delete";
     public static final String UPDATE = "update";
 
     public static String insert(Object obj){
@@ -50,8 +49,7 @@ public class MySqlProvider {
         }.toString();
     }
 
-
- public static String delete(String table, String where) {
+    public static String delete(String table, String where) {
         if (StringUtil.isEmpty(table)) {
             return null;
         }
@@ -68,8 +66,7 @@ public class MySqlProvider {
         }.toString();
     }
 
-
-    private static String getMap(Object obj, Map<String, String> map) {
+    private static String getMap(Object obj,Map<String, String> map) {
         Class c = obj.getClass();
         Field[] fs = c.getDeclaredFields();
         String idName = null;
@@ -110,4 +107,3 @@ public class MySqlProvider {
     }
 
 }
-*/

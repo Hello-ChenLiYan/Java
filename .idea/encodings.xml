@@ -5,8 +5,11 @@
     <file url="file://$PROJECT_DIR$/common-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer-admin-8801" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
+      <file url="file://$PROJECT_DIR$/consumer-flower-8803" charset="UTF-8" />
+      <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/provider-800" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/provider-admin-8001" charset="UTF-8" />
+      <file url="file://$PROJECT_DIR$/provider-flower-8003" charset="UTF-8" />
+
   </component>
 </project>
