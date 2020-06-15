@@ -4,16 +4,26 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sc.dao.FlowerDao;
 import com.sc.entity.Flower;
-import com.sc.service.FlowerFeignService;
+import com.sc.service.FlowerService;
 import com.sc.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
-public class FlowerFeignServiceImpl implements FlowerFeignService {
+@Service("flowerService")
+public class FlowerServiceImpl implements FlowerService {
 
-    @Autowired
+    //@Autowired
+    @Resource
     private FlowerDao flowerDao;
+
+    @Override
+    public Flower queryById(Integer id) {
+        return flowerDao.queryById(id);
+    }
 
     @Override
     public Flower insert(Flower flower) {
@@ -28,15 +38,14 @@ public class FlowerFeignServiceImpl implements FlowerFeignService {
 
     @Override
     public boolean deleteById(List<Integer> ids) {
-        return flowerDao.delete("florist.flower", StringUtil.listToString(ids)) > 0;
+        HashMap<String, List<Integer>> map = new HashMap<>();
+        map.put("id",ids);
+        return flowerDao.delete(map);
     }
 
     @Override
     public IPage<Flower> queryAllByLimit(int offset, int limit, Flower bean) {
         Page<Flower> page = new Page<>(offset,limit);
-//        QueryWrapper<Flower> wrapper = new QueryWrapper<>();
-//        wrapper.like("name",bean.getName())
-//        .like("type",bean.getType());
         page.setRecords(flowerDao.queryAll(page,bean));
         return page;
     }
