@@ -17,7 +17,7 @@
       <module name="common-api" target="11" />
       <module name="consumer" target="11" />
       <module name="eureka-server" target="11" />
-      <module name="provider-800" target="11" />
+      <module name="provider-800" target="1.5" />
       <module name="spring-cloud-02" target="1.8" />
     </bytecodeTargetLevel>
   </component>
