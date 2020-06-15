@@ -1,5 +1,7 @@
 package com.sc.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sc.entity.User;
 import com.sc.dao.UserDao;
 import com.sc.service.UserService;
@@ -38,8 +40,15 @@ public class UserServiceImpl implements UserService {
      * @return 对象列表
      */
     @Override
-    public List<User> queryAllByLimit(int offset, int limit) {
-        return this.userDao.queryAllByLimit(offset, limit);
+    public IPage<User> queryAllByLimit(int offset, int limit,User bean) {
+        Page<User> page = new Page<>(offset,limit);
+        page.setRecords(this.userDao.queryAllByLimit(offset, limit, bean));
+        return page;
+    }
+
+    @Override
+    public List<User> queryAll(User bean) {
+        return userDao.queryAll(bean);
     }
 
     /**
@@ -55,30 +64,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> query() {
-        return null;
-    }
-
-    /**
-     * 修改数据
-     *
-     * @param user 实例对象
-     * @return 实例对象
-     */
-    @Override
     public User update(User user) {
         this.userDao.update(user);
         return this.queryById(user.getId());
     }
 
+
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param ids 主键
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.userDao.deleteById(id) > 0;
+    public boolean delete(List<Integer> ids) {
+        return userDao.delete(ids) > 0;
     }
 }

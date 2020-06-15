@@ -1,5 +1,6 @@
 package com.sc.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.sc.entity.User;
 import java.util.List;
 
@@ -26,7 +27,9 @@ public interface UserService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<User> queryAllByLimit(int offset, int limit);
+    IPage<User> queryAllByLimit(int offset, int limit, User bean);
+
+    List<User> queryAll(User bean);
 
     /**
      * 新增数据
@@ -36,23 +39,20 @@ public interface UserService {
      */
     User insert(User user);
 
-
-    List<User> query();
-
     /**
      * 修改数据
      *
      * @param user 实例对象
      * @return 实例对象
      */
-    User update(User user);
+    boolean update(User user);
 
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param ids 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer id);
+    boolean delete(List<Integer> ids);
 
 }
