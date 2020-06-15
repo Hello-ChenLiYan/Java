@@ -12,15 +12,8 @@
         <module>eureka-server</module>
         <module>consumer</module>
         <module>provider-800</module>
-    </modules>
-
-    <modules>
-        <module>common-api</module>
-        <module>eureka-server</module>
         <module>provider-flower-8003</module>
         <module>consumer-flower-8803</module>
-        <module>eureka-server</module>
-        <module>eureka-server</module>
     </modules>
 
     <!-- 父项目打包方式 -->
