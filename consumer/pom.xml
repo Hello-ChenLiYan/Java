@@ -11,6 +11,7 @@
 
     <artifactId>consumer</artifactId>
 
+
     <dependencies>
         <dependency>
             <groupId>com.sc</groupId>
