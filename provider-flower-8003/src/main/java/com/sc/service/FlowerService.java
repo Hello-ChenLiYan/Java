@@ -10,22 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-//@Component
-//@FeignClient(value="provider-flower")//服务名称
-public interface FlowerFeignService {
-    //@GetMapping("/flower/queryAll")
-    //List<Flower> queryAll();
+public interface FlowerService {
 
-    //@PostMapping("/flower/insert")
+    Flower queryById(Integer id);
     Flower insert(Flower flower);
-
-    //@PostMapping("/flower/update")
     int update(Flower flower);
-
-    //@DeleteMapping("/flower/delete")
     boolean deleteById(List<Integer> ids);
-
-    //@GetMapping("/flower/queryAll")
     IPage<Flower> queryAllByLimit(int offset, int limit, Flower bean);
 
 }
