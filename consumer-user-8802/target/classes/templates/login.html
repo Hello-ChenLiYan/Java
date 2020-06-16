@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理-登陆</title>
+    <div th:replace="~{common::css}"></div>
+    <div th:replace="~{common::sign-in-up}"></div>
+</head>
+<body>
+<div class="layui-container">
+    <div class="admin-login-background">
+        <div class="layui-form login-form">
+            <form class="layui-form" th:action="@{/user/consumer/login}" th:method="post">
+                <div class="layui-form-item logo-title">
+                    <h1>Sign In To User</h1>
+                </div>
+                <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-username" th:for="username"></label>
+                    <input type="text" name="account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input" value="">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-password" th:for="password"></label>
+                    <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-vercode" th:for="captche"></label>
+                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg">
+                    <div class="captcha-img">
+                        <img id="captchaPic" th:src="@{/images/captcha.jpg}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <input type="checkbox" name="remember" value="true" lay-skin="primary" title="记住密码">
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="login" >Sign In</button>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="signUp" >Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="~{common::js}"></div>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer;
+
+        // 登录过期的时候，跳出ifram框架
+        if (top.location != self.location) top.location = self.location;
+
+        // 粒子线条背景
+        $(document).ready(function(){
+            $('.layui-container').particleground({
+                dotColor:'#7ec7fd',
+                lineColor:'#7ec7fd'
+            });
+        });
+
+        // 进行登录操作
+        form.on('submit(login)', function (data) {
+            data = data.field;
+            if (data.account == '') {
+                layer.msg('用户名不能为空');
+                return false;
+            }
+            if (data.password == '') {
+                layer.msg('密码不能为空');
+                return false;
+            }
+            if (data.captcha == '') {
+                layer.msg('验证码不能为空');
+                return false;
+            }
+
+            return true;
+        });
+
+
+        $('.signUp').on("click", function () {
+            layer.msg('进行用户注册', function () {
+                window.location = 'register';
+            });
+        });
+    });
+</script>
+</body>
+</html>
