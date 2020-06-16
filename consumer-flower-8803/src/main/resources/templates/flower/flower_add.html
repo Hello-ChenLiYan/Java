@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="layui-form layuimini-form">
-    <form class="layui-form" action="" method="post" th:object="${bean}">
+    <form class="layui-form" th:action="@{/flower/feign/save}" method="post" th:object="${bean}" enctype="multipart/form-data">
         <input type="hidden" th:value="*{id}" name="id">
         <div class="layui-form-item">
             <label class="layui-form-label required">名称</label>
@@ -52,29 +52,28 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">图片</label>
             <div class="layui-input-block">
-                <input type="text" name="photo" placeholder="文件上传功能暂未实现，敬请期待..."
-                       th:value="*{photo}" class="layui-input">
+<!--                <input type="text" name="photo" placeholder="文件上传功能暂未实现，敬请期待..."-->
+<!--                       th:value="*{photo}" class="layui-input">-->
 
             </div>
-<!--            <div id="btn" style="width: 100px;margin-left: 90px;margin-bottom: 10px">-->
-<!--                文件上传-->
-<!--                <input type="file" name="pictureFile" class="file" onclick="daojishi()">-->
-<!--            </div>-->
+            <div id="btn" style="width: 100px;margin-left: 90px;margin-bottom: 10px">
+                <input type="file" name="pictureFile" id="pictureFile" class="file" onclick="daojishi()">
+            </div>
             <!-- 文件名显示区域 -->
-<!--            <div id="filename"></div>-->
+            <div id="filename"></div>
             <!-- 轮询文件名 -->
-<!--            <script>-->
-<!--                function daojishi() {-->
-<!--                    setInterval("getname()",1000);-->
-<!--                }-->
-<!--            </script>-->
-<!--            &lt;!&ndash; 获取文件名 &ndash;&gt;-->
-<!--            <script>-->
-<!--                function getname() {-->
-<!--                    var filename = $("#btn .file").val();-->
-<!--                    $("#filename").text(filename);-->
-<!--                }-->
-<!--            </script>-->
+            <script>
+                function daojishi() {
+                    setInterval("getname()",1000);
+                }
+            </script>
+            <!-- 获取文件名 -->
+            <script>
+                function getname() {
+                    var filename = $("#btn .file").val();
+                    $("#filename").text(filename);
+                }
+            </script>
 <!--            <button type="button" class="layui-btn" id="uploadpic" name="photo">上传图片</button>-->
         </div>
 
@@ -90,17 +89,36 @@
     layui.use(['form'], function () {
         var form = layui.form,
             layer = layui.layer,
+            // formData =  new FormData(),
+            // pictureFile = document.getElementById("pictureFile").files[0];
             $ = layui.$;
-
+        //formData.append("pictureFile",pictureFile);
+        // var bean = JSON.stringify({
+        //     "id":parseInt($('id').text()),
+        //     "name":$('name').val(),
+        //     "type":$('type').val(),
+        //     "stock":parseInt($('stock').text()),
+        //     "price":parseInt($('price').text()),
+        //     "floMean":$('floMean').val(),
+        // })
+        //formData.append('bean', new Blob([bean],{type: "application/json"}));
         //监听提交
-        form.on('submit(saveBtn)', function (data) {
+        //form.on('submit(saveBtn)', function (data) {
+        form.on('submit(saveBtn)', function () {
+            // $.ajax({
+            //     url:"/flower/feign/save",
+            //     type:"post",
+            //     contentType:false,
+            //     processData:false,
+            //     dataType:"json",
+            //     data:formData,
+            // })
             //使用JQuery的AJAX提交
-            $.post("/flower/feign/save",data.field,function (data) {
-                console.log(data);
-            })
+            // $.post("/flower/feign/save",data.field,function (data) {
+            //     console.log(data);
+            // })
             // 关闭弹出层
             layer.close();
-
             var iframeIndex = parent.layer.getFrameIndex(window.name);
             parent.layer.close(iframeIndex);
         });
