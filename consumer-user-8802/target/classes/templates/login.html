@@ -12,7 +12,7 @@
         <div class="layui-form login-form">
             <form class="layui-form" th:action="@{/user/consumer/login}" th:method="post">
                 <div class="layui-form-item logo-title">
-                    <h1>Sign In To User</h1>
+                    <h1>Sign In</h1>
                 </div>
                 <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                 <div class="layui-form-item">
@@ -36,8 +36,8 @@
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="login" >Sign In</button>
                 </div>
-                <div class="layui-form-item">
-                    <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="signUp" >Sign Up</button>
+                <div class="layui-form-item" >
+                    <a href="javascript:;" id="signUp" class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" style="color: white;background-color: green;" >Sign Up</a>
                 </div>
             </form>
         </div>
@@ -80,7 +80,7 @@
         });
 
 
-        $('.signUp').on("click", function () {
+        $('#signUp').on("click", function () {
             layer.msg('进行用户注册', function () {
                 window.location = 'register';
             });

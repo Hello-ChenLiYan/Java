@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: provider-user-8002
+    name: provider-user
   datasource:
     url: jdbc:mysql://localhost:3306/flower?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
