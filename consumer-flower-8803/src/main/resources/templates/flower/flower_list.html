@@ -60,6 +60,10 @@
 
     </div>
 </div>
+<!--<img src="http://localhost:88/{{d.photo}}" style="width: 30px;height: 30px">-->
+<script type="text/html" id="imgtmp">
+    <img src="http://localhost:8803/{{d.photo}}" style="width: 30px;height: 30px">
+</script>
 <script th:src="@{/layui-v2.5.5/layui.js}" charset="utf-8"></script>
 <script>
     layui.use(['form', 'table'], function () {
@@ -75,7 +79,7 @@
             {field: 'stock', width: 80, title: '库存'},
             {field: 'price', width: 80, title: '价格'},
             {field: 'floMean', title: '花语', Width: 150},
-            {field: 'photo', width: 100, title: '图片'},
+            {field: 'photo', width: 100, title: '图片', templet: "#imgtmp"},
             {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
         ];
 

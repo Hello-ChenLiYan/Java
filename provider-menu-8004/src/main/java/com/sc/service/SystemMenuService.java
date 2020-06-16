@@ -22,6 +22,16 @@ public interface SystemMenuService {
     IPage<SystemMenu> queryAllByLimit(int offset, int limit, SystemMenu bean);
 
      boolean delete(List<Integer> ids);
+    SystemMenu insert(SystemMenu systemMenu);
+
+    /**
+     * 修改数据
+     *
+     * @param systemMenu 实例对象
+     * @return 实例对象
+     */
+    boolean update(SystemMenu systemMenu);
+
 
 
 }

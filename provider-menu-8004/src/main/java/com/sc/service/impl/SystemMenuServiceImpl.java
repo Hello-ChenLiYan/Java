@@ -58,31 +58,30 @@ public class SystemMenuServiceImpl implements SystemMenuService {
         return page;
     }
 
- /*   @Override
-    public IPage<SystemMenu> queryAllByLimit(int offset, int limit, SystemMenu bean) {
-        Page<SystemMenu> page = new Page<>(offset, limit);
-
-        page.setRecords(systemMenuDao.queryAllByLimit(page, bean));
-        return page;
-    }*/
-
-/*
+    /**
+     * 新增数据
+     *
+     * @param systemMenu 实例对象
+     * @return 实例对象
+     */
     @Override
-    public boolean delete(List<Integer> ids)
-    {
-        if(ids ==null || ids.size() ==0){
-            return false;
-        }
-        StringBuffer sb =new StringBuffer("id in(");
-        for(Integer item :ids){
-            sb.append("'");
-            sb.append(item);
-            sb.append("',");
-        }
-        sb.deleteCharAt(sb.lastIndexOf(","));
-        sb.append(")");
-        return this.systemMenuDao.delete(ids);
-    }*/
+    public SystemMenu insert(SystemMenu systemMenu) {
+        systemMenu.setStatus(1);
+        systemMenu.setTarget("_self");
+        this.systemMenuDao.insert(systemMenu);
+        return systemMenu;
+    }
+
+    /**
+     * 修改数据
+     *
+     * @param systemMenu 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public boolean update(SystemMenu systemMenu) {
+        return systemMenuDao.update(systemMenu)>0;
+    }
 
     @Override
     public boolean delete(List<Integer> ids) {

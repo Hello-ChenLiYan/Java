@@ -97,3 +97,27 @@ public class SystemMenuController {
 
         }
     }
+
+    @GetMapping("getById")
+    public Object queryById(Integer id){
+        return this.systemMenuService.queryById(id);
+    }
+
+    @PostMapping("save")
+    @ResponseBody
+    public Object save(SystemMenu bean){
+        boolean result = false;
+        //判断是添加还是编辑
+        if (bean.getId() != null) {
+            //编辑
+            bean.setUpdateAt(new Date());
+            result = systemMenuService.update(bean);
+        } else {
+            //添加
+            bean.setCreateAt(new Date());
+            result = systemMenuService.insert(bean).getId() != null;
+        }
+        return result;
+    }
+
+}

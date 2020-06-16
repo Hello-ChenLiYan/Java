@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spriing-cloud-02.iml" filepath="$PROJECT_DIR$/spriing-cloud-02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/common-api.iml" filepath="$PROJECT_DIR$/common-api/common-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consumer/consumer.iml" filepath="$PROJECT_DIR$/consumer/consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consumer-flower-8803/consumer-flower-8803.iml" filepath="$PROJECT_DIR$/consumer-flower-8803/consumer-flower-8803.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provider-800/provider-800.iml" filepath="$PROJECT_DIR$/provider-800/provider-800.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provider-flower-8003/provider-flower-8003.iml" filepath="$PROJECT_DIR$/provider-flower-8003/provider-flower-8003.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-02.iml" filepath="$PROJECT_DIR$/spring-cloud-02.iml" />
     </modules>
   </component>
 </project>

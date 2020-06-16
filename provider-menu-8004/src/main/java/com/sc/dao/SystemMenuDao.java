@@ -5,6 +5,7 @@ import com.sc.entity.SystemMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @ResponseBody
 public interface SystemMenuDao extends BaseDao<SystemMenu>{
 
-    SystemMenu queryById(@Param("id")Integer id);
+    SystemMenu queryById(Integer id);
    List<SystemMenu>queryAllByLimit(@Param("offset")int offset, @Param("limit") int limit);
     //  List<SystemMenu>queryAllByLimit(IPage<SystemMenu> page, SystemMenu bean);
 

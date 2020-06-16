@@ -19,6 +19,8 @@ public interface SystemMenuFeignService {
     Object queryAll(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @SpringQueryMap SystemMenu bean);
 
 
+    @PostMapping("systemMenu/save")
+    Object save(@RequestBody SystemMenu bean);
 
     @DeleteMapping("/systemMenu/{ids}")
     boolean delete(@PathVariable(value = "ids") Integer[] ids);
