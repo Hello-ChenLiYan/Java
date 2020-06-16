@@ -21,10 +21,10 @@ public class UploadUtil {
             String imaLastName = fileName.substring(fileName.lastIndexOf("."));
             //创建本地文件流，存放图片路径
             File oldfile = new File(filePath);
-            File file = new File(oldfile.getAbsolutePath()+imgName+imaLastName);
+            File file = new File(oldfile.getAbsolutePath()+File.separator+imgName+imaLastName);//.getAbsolutePath()
             //写入磁盘
             picture.transferTo(file);
-            String picPath = "/flowers/"+imgName+imaLastName;
+            String picPath = "flowers/"+imgName+imaLastName;
             return picPath;
         }
         return null;

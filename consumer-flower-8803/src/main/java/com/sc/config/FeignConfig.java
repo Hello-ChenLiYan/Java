@@ -1,5 +1,6 @@
 package com.sc.config;
 
+import feign.Contract;
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
 import org.springframework.beans.factory.ObjectFactory;
@@ -17,11 +18,18 @@ public class FeignConfig {
     @Autowired
     private ObjectFactory<HttpMessageConverters> messageConverters;
 
+    // 启用Fegin自定义注解 如@RequestLine @Param
+//    @Bean
+//    public Contract feignContract(){
+//        return new Contract.Default();
+//    }
+
     @Primary
     @Scope("prototype")
     @Bean
     public Encoder feignFormEncoder() {
         return new SpringFormEncoder(new SpringEncoder(messageConverters));
+//        return new SpringFormEncoder();
     }
 
 }
