@@ -1,13 +1,13 @@
 server:
   port: 7001
-
+---
 spring:
   application:
     name: eureka-server
-
+---
 eureka:
   instance:
-    hostname: localhost
+    hostname: r1
   client:
     fetch-registry: false
     register-with-eureka: false

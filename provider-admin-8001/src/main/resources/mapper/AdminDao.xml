@@ -67,8 +67,8 @@
 
 
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into florist.admin(username,password,phone)
-        values (#{username},#{password},#{phone})
+        insert into florist.admin(username,password,phone,reg_date)
+        values (#{username},#{password},#{phone},#{regDate})
     </insert>
 
     <update id="update" parameterType="com.sc.entity.Admin">

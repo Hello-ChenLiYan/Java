@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * (Admin)表控制层
@@ -73,6 +74,7 @@ public class AdminController {
              result = adminService.update(bean)>0;
         } else {
             //添加
+            bean.setRegDate(new Date());
             result = adminService.insert(bean).getId()!= null;
         }
 

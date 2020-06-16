@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
         return this.queryById(user.getId());
     }
 */
-    
+
     @Override
     public boolean update(User user) {
         this.userDao.update(user);
