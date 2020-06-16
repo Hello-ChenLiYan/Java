@@ -16,12 +16,9 @@ public interface AdminFeignService{
     @GetMapping("/admin/getById")
     Admin getById(@RequestParam("id")Integer id);
 
-/*   @GetMapping("/admin/{id}")
-    Object getById(@PathVariable(value = "id")Integer id);*/
-
 
     @PostMapping("admin/queryAll")
-    Object queryAll(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @RequestBody AdminQuery bean);
+    Object queryAll(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @SpringQueryMap AdminQuery bean);
 
     @PostMapping(value = "/admin/save")
     Object save(@SpringQueryMap Admin bean);

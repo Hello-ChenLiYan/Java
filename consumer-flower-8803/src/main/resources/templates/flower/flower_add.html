@@ -52,10 +52,32 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">图片</label>
             <div class="layui-input-block">
-                <input type="text" name="photo" placeholder="请添加图片"
+                <input type="text" name="photo" placeholder="文件上传功能暂未实现，敬请期待..."
                        th:value="*{photo}" class="layui-input">
+
             </div>
+<!--            <div id="btn" style="width: 100px;margin-left: 90px;margin-bottom: 10px">-->
+<!--                文件上传-->
+<!--                <input type="file" name="pictureFile" class="file" onclick="daojishi()">-->
+<!--            </div>-->
+            <!-- 文件名显示区域 -->
+<!--            <div id="filename"></div>-->
+            <!-- 轮询文件名 -->
+<!--            <script>-->
+<!--                function daojishi() {-->
+<!--                    setInterval("getname()",1000);-->
+<!--                }-->
+<!--            </script>-->
+<!--            &lt;!&ndash; 获取文件名 &ndash;&gt;-->
+<!--            <script>-->
+<!--                function getname() {-->
+<!--                    var filename = $("#btn .file").val();-->
+<!--                    $("#filename").text(filename);-->
+<!--                }-->
+<!--            </script>-->
+<!--            <button type="button" class="layui-btn" id="uploadpic" name="photo">上传图片</button>-->
         </div>
+
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
@@ -63,7 +85,7 @@
         </div>
     </form>
 </div>
-<script th:src="@{/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/layui-v2.5.5/layui.js}"charset="utf-8"></script>
 <script>
     layui.use(['form'], function () {
         var form = layui.form,

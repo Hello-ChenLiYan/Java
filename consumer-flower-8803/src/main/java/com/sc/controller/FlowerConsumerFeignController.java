@@ -3,9 +3,13 @@ package com.sc.controller;
 import com.sc.entity.Flower;
 import com.sc.service.FlowerFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author yinrui
@@ -48,6 +52,12 @@ public class FlowerConsumerFeignController {
         System.out.println(bean);
         return flowerFeignService.save(bean);
     }
+//    @PostMapping(value = "save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)//,consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+//    @ResponseBody
+//    public Object save(Flower bean, @RequestPart("pictureFile") MultipartFile pictureFile, HttpServletRequest request){
+//        System.out.println(bean);
+//        return flowerFeignService.save(bean,pictureFile,request);
+//    }
 
     @DeleteMapping("/{ids}")
     @ResponseBody

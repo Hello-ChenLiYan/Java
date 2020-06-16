@@ -16,6 +16,8 @@
         <module>consumer-admin-8801</module>
         <module>provider-flower-8003</module>
         <module>consumer-flower-8803</module>
+        <module>provider-menu-8004</module>
+        <module>consumer-menu-8804</module>
     </modules>
 
     <!-- 父项目打包方式 -->
@@ -78,12 +80,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jdbc</artifactId>
-                <version>2.1.14.RELEASE</version>
+                <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-jdbc</artifactId>
-                <version>2.1.14.RELEASE</version>
+                <version>${spring-boot.version}</version>
             </dependency>
 
             <dependency>
@@ -95,7 +97,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-configuration-processor</artifactId>
-                <version>2.1.14.RELEASE</version>
+                <version>${spring-boot.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -11,6 +11,7 @@ eureka:
       defaultZone: http://r1:7001/eureka/ #配置注册中⼼地址
 info:
   remark: admin-consumer
+  author: 蔡
 
 spring:
   application:

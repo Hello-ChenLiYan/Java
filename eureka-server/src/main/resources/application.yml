@@ -7,7 +7,7 @@ spring:
 ---
 eureka:
   instance:
-    hostname: localhost
+    hostname: r1
   client:
     fetch-registry: false
     register-with-eureka: false
