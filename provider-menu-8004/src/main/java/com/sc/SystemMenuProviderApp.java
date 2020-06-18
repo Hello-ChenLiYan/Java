@@ -12,5 +12,4 @@ public class SystemMenuProviderApp {
     public static void main(String[] args) {
         SpringApplication.run(SystemMenuProviderApp.class,args);
     }
-<<<<<<< HEAD
 }

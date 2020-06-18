@@ -20,10 +20,7 @@ import java.util.List;
 public interface SystemMenuDao extends BaseDao<SystemMenu>{
 
     SystemMenu queryById(Integer id);
-   List<SystemMenu>queryAllByLimit(@Param("offset")int offset, @Param("limit") int limit);
-    //  List<SystemMenu>queryAllByLimit(IPage<SystemMenu> page, SystemMenu bean);
-
-
+    List<SystemMenu>queryAllByLimit(@Param("offset")int offset, @Param("limit") int limit);
     List<SystemMenu>queryAll(@Param("page")IPage<SystemMenu> page,@Param("bean")SystemMenu bean);
     boolean delete(@Param("ids") List<Integer> ids);
 

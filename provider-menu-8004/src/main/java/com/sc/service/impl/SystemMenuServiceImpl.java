@@ -58,29 +58,19 @@ public class SystemMenuServiceImpl implements SystemMenuService {
         return page;
     }
 
-    /**
-     * 新增数据
-     *
-     * @param systemMenu 实例对象
-     * @return 实例对象
-     */
+
     @Override
-    public SystemMenu insert(SystemMenu systemMenu) {
-        systemMenu.setStatus(1);
-        systemMenu.setTarget("_self");
-        this.systemMenuDao.insert(systemMenu);
-        return systemMenu;
+    public SystemMenu insert(SystemMenu bean) {
+        bean.setStatus(1);
+        bean.setTarget("_self");
+        this.systemMenuDao.insert(bean);
+        return bean;
     }
 
-    /**
-     * 修改数据
-     *
-     * @param systemMenu 实例对象
-     * @return 实例对象
-     */
+
     @Override
-    public boolean update(SystemMenu systemMenu) {
-        return systemMenuDao.update(systemMenu)>0;
+    public boolean update(SystemMenu bean) {
+        return systemMenuDao.update(bean)>0;
     }
 
     @Override

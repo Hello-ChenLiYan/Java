@@ -21,7 +21,8 @@ import java.util.*;
  * @author makejava
  * @since 2020-05-27 16:47:34
  */
-@Controller
+//@Controller
+@RestController
 @RequestMapping("systemMenu")
 public class SystemMenuController {
     /**
@@ -73,7 +74,7 @@ public class SystemMenuController {
 */
 
     @PostMapping("queryAll")
-    @ResponseBody
+   // @ResponseBody
     public Object queryAll(Integer page, Integer limit, SystemMenu bean) {
         System.out.println(bean);
         CommonResult<SystemMenu> result = new CommonResult<>();
@@ -86,7 +87,7 @@ public class SystemMenuController {
 
 
         @DeleteMapping("/{ids}")
-        @ResponseBody
+      //  @ResponseBody
         public boolean deleteById(@PathVariable Integer[] ids) {
             if (ids == null || ids.length == 0) {
                 return false;
@@ -96,15 +97,15 @@ public class SystemMenuController {
             return true;
 
         }
-    }
 
     @GetMapping("getById")
-    public Object queryById(Integer id){
+    public SystemMenu getById(Integer id){
         return this.systemMenuService.queryById(id);
+
     }
 
     @PostMapping("save")
-    @ResponseBody
+   // @ResponseBody
     public Object save(SystemMenu bean){
         boolean result = false;
         //判断是添加还是编辑
@@ -116,6 +117,7 @@ public class SystemMenuController {
             //添加
             bean.setCreateAt(new Date());
             result = systemMenuService.insert(bean).getId() != null;
+            System.out.println("####添加#####"+bean);
         }
         return result;
     }
