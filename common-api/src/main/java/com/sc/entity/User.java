@@ -22,7 +22,7 @@ import java.io.Serializable;
 @Accessors//(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("flower.user")
+@Table("florist.user")
 public class User implements Serializable {
     /**
     * 用户ID

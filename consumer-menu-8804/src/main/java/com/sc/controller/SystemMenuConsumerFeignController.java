@@ -40,12 +40,6 @@ public class SystemMenuConsumerFeignController {
         return systemMenuFeignService.delete(ids);
     }
 
-
-
-
-    @Autowired
-    private SystemMenuFeignService systemMenuFeignService;
-
     @GetMapping("/")
     public String toAdd(Model model) {
         model.addAttribute("bean", new SystemMenu());
@@ -55,7 +49,7 @@ public class SystemMenuConsumerFeignController {
     @GetMapping("/{id}")
     public String toEdit(@PathVariable Integer id, Model model) {
         System.out.println("id:::" + id);
-        SystemMenu bean = systemMenuFeignService.queryById(id);
+        SystemMenu bean = systemMenuFeignService.getById(id);
         model.addAttribute("bean", bean);
 
         return "menu/menu_add";

@@ -5,7 +5,7 @@ spring:
   application:
     name: provider-user
   datasource:
-    url: jdbc:mysql://localhost:3306/flower?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/florist?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver

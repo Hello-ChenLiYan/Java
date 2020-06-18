@@ -19,9 +19,11 @@ public interface SystemMenuService {
    // List<SystemMenu>queryAll(IPage<SystemMenu> page,SystemMenu bean);
 
     SystemMenu queryById(Integer id);
+
     IPage<SystemMenu> queryAllByLimit(int offset, int limit, SystemMenu bean);
 
      boolean delete(List<Integer> ids);
+
     SystemMenu insert(SystemMenu systemMenu);
 
     /**
@@ -31,7 +33,5 @@ public interface SystemMenuService {
      * @return 实例对象
      */
     boolean update(SystemMenu systemMenu);
-
-
 
 }
