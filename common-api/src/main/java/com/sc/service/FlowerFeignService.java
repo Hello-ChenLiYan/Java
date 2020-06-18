@@ -27,14 +27,10 @@ public interface FlowerFeignService {
     @PostMapping("/flower/queryByKey")
     List<Flower> queryByKeys(@RequestParam("key") String key);
 
-//    @PostMapping("/flower/save")
-//    Object save(@RequestBody Flower bean);
     @PostMapping("/flower/save")
-    //@PostMapping(value = "/flower/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})//, consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     Object save(@RequestBody Flower bean);
 
     @PostMapping(value = "/flower/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-        //@PostMapping(value = "/flower/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})//, consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     Object save(@RequestParam("id") Integer id, @RequestPart("pictureFile") MultipartFile pictureFile);
 
     @DeleteMapping("/flower/{ids}")
