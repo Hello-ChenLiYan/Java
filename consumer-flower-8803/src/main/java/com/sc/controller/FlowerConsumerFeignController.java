@@ -73,13 +73,7 @@ public class FlowerConsumerFeignController {
         model.addAttribute("bean", bean);
         return "flower/flower_add";
     }
-
-//    @PostMapping("save")
-//    @ResponseBody
-//    public Object save(Flower bean){
-//        System.out.println(bean);
-//        return flowerFeignService.save(bean);
-//    }
+    
     @PostMapping(value = "save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)//,consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}
     @ResponseBody
     public Object save(Flower bean,MultipartFile pictureFile){
