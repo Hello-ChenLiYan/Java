@@ -16,7 +16,7 @@ info:
 ---
 spring:
   application:
-    name: consumer-user-8802
+    name: consumer-user
 ---
 spring:
   thymeleaf:

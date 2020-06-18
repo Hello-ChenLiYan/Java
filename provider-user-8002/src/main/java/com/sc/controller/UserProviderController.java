@@ -3,7 +3,6 @@ package com.sc.controller;
 import com.sc.entity.User;
 import com.sc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -21,8 +20,8 @@ public class UserProviderController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("insert")
-    public Object insert(User bean) {
+    @RequestMapping("insert")
+    public Object insert(@RequestParam("bean") User bean) {
         return userService.insert(bean);
     }
 
