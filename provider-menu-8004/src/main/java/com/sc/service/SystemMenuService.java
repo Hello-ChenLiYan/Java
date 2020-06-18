@@ -34,4 +34,6 @@ public interface SystemMenuService {
      */
     boolean update(SystemMenu systemMenu);
 
+
+
 }

@@ -20,7 +20,7 @@ public interface SystemMenuFeignService {
 
 
     @PostMapping("systemMenu/save")
-    Object save(@RequestBody SystemMenu bean);
+    Object save(@SpringQueryMap SystemMenu bean);
 
     @DeleteMapping("/systemMenu/{ids}")
     boolean delete(@PathVariable(value = "ids") Integer[] ids);

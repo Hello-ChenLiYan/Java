@@ -8,22 +8,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common-api" />
-        <module name="provider-800" />
         <module name="consumer-admin-8801" />
         <module name="provider-flower-8003" />
-        <module name="consumer" />
-        <module name="provider-user-8002" />
+        <module name="provider-user-8003" />
+        <module name="consumer-user-8003" />
         <module name="provider-admin-8001" />
         <module name="consumer-flower-8803" />
         <module name="eureka-server" />
         <module name="provider-menu-8004" />
-        <module name="consumer-user-8802" />
         <module name="consumer-menu-8804" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="consumer" target="11" />
-      <module name="provider-800" target="1.5" />
+      <module name="consumer" target="1.8" />
+      <module name="provider-800" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
