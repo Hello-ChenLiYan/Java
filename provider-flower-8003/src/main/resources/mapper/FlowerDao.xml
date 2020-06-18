@@ -51,6 +51,24 @@
         limit #{offset}, #{limit}
     </select>
 
+    <select id="getByKeys" resultMap="FlowerMap">
+        select * from
+        florist.flower
+        where concat
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name!=null">
+                name,
+            </if>
+            <if test="type!=null">
+                type,
+            </if>
+            <if test="floMean!=null">
+                flo_mean,
+            </if>
+        </trim>
+        like ('%',#{key},'%')
+    </select>
+
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="FlowerMap">
         select

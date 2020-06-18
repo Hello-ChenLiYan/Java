@@ -3,14 +3,14 @@ package com.sc.controller;
 import com.sc.entity.Flower;
 import com.sc.service.FlowerFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author yinrui
@@ -21,6 +21,33 @@ public class FlowerConsumerFeignController {
 
     @Autowired
     private FlowerFeignService flowerFeignService;
+
+    @RequestMapping("/detailFlower/{id}")
+    public String getById(@PathVariable Integer id,HttpSession session){
+        Flower bean = flowerFeignService.getById(id);
+        session.setAttribute("flower",bean);
+        return "flower/flowersDetails";
+    }
+
+    @RequestMapping("queryAllFlower")
+    public String queryAll(String name,Flower bean,Model model){
+        if(name!=null){
+            bean.setName(name);
+        }
+        List<Flower> list = (List<Flower>) flowerFeignService.queryAll(bean);
+        model.addAttribute("flowerList",list);
+        return "flower/flowerShop_list";
+    }
+
+    @RequestMapping("queryByKey")
+    public String queryByKeys(String key,Model model){
+        if (key != null){
+            List<Flower> list = flowerFeignService.queryByKeys(key);
+            model.addAttribute("flowerList",list);
+            return "flower/flowerShop_list";
+        }
+        return queryAll(null,null,model);
+    }
 
     @RequestMapping("toList")
     public String toList() {

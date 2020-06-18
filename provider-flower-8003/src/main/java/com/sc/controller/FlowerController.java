@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequestMapping("flower")
@@ -38,6 +39,17 @@ public class FlowerController {
         result.setCount(iPage.getTotal());
         result.setData(iPage.getRecords());
         return result;
+    }
+
+    @PostMapping("queryAllFlower")
+    public List<Flower> queryAll(@RequestBody Flower bean){
+        System.out.println("bean:::"+bean);
+        return flowerService.queryAll(bean);
+    }
+
+    @PostMapping("queryByKey")
+    public List<Flower> queryByKeys(String key){
+        return flowerService.getByKeys(key);
     }
 
     @PostMapping(value = "save")

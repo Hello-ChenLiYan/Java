@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Component
 @FeignClient(value="provider-flower")//服务名称
 public interface FlowerFeignService {
@@ -18,6 +20,12 @@ public interface FlowerFeignService {
 
     @PostMapping("/flower/queryAll")
     Object queryAll(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @RequestBody Flower bean);
+
+    @PostMapping("/flower/queryAllFlower")
+    Object queryAll(@RequestBody Flower bean);
+
+    @PostMapping("/flower/queryByKey")
+    List<Flower> queryByKeys(@RequestParam("key") String key);
 
 //    @PostMapping("/flower/save")
 //    Object save(@RequestBody Flower bean);

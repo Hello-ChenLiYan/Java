@@ -7,6 +7,6 @@ public class WebStaticConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/flowers/**").addResourceLocations("classpath:static/");
+        registry.addResourceHandler("/flowers/**").addResourceLocations("classpath:static/flowers/");
     }
 }

@@ -1,0 +1,14 @@
+server:
+  port: 8803
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}
+  client:
+    fetch-registry: true #指定是否要从注册中⼼获取服务（注册中⼼不需要开启）
+    register-with-eureka: true #指定是否要注册到注册中⼼（注册中⼼不需要开启）
+    service-url:
+      defaultZone: http://r1:7001/eureka/ #配置注册中⼼地址
+spring:
+  application:
+    name: consumer-flower-8803

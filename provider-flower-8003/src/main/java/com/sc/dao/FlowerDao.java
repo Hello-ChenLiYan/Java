@@ -21,6 +21,9 @@ public interface FlowerDao extends BaseDao<Flower> {
     Flower queryById(Integer id);
     List<Flower>queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit, @Param("bean") Flower bean);
     List<Flower> queryAll(IPage<Flower> page, @Param("bean") Flower bean);
+    List<Flower> queryAll(@Param("bean") Flower bean);
+    List<Flower> getByKeys(@Param("key")String key);
     boolean delete(Map<String, List<Integer>> maps);
+
 
 }

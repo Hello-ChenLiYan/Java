@@ -49,4 +49,14 @@ public class FlowerServiceImpl implements FlowerService {
         page.setRecords(flowerDao.queryAll(page,bean));
         return page;
     }
+
+    @Override
+    public List<Flower> queryAll(Flower bean) {
+        return flowerDao.queryAll(bean);
+    }
+
+    @Override
+    public List<Flower> getByKeys(String key) {
+        return flowerDao.getByKeys(key);
+    }
 }

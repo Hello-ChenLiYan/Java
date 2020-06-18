@@ -1,0 +1,39 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: provider-flower
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/florist?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${server.port}
+  client:
+    register-with-eureka: true #注册到Eureka的注册中⼼
+    fetch-registry: true #获取注册实例列表
+    #service-url:
+    service-url:
+      defaultZone: http://r1:7001/eureka/ #配置注册中⼼地址
+info:
+  remark: 这是一个商品信息服务，提供了增删改查
+  author: 殷瑞
+
+#management:
+#  endpoints:
+#    web:
+#     exposure:
+#      include: 'hystrix.stream' #暴露hystrix监控端点Copy to clipboardErrorCopied
