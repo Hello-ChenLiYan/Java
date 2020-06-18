@@ -17,19 +17,12 @@ import org.springframework.context.annotation.Scope;
 public class FeignConfig {
     @Autowired
     private ObjectFactory<HttpMessageConverters> messageConverters;
-
-    // 启用Fegin自定义注解 如@RequestLine @Param
-//    @Bean
-//    public Contract feignContract(){
-//        return new Contract.Default();
-//    }
-
+    
     @Primary
     @Scope("prototype")
     @Bean
     public Encoder feignFormEncoder() {
         return new SpringFormEncoder(new SpringEncoder(messageConverters));
-//        return new SpringFormEncoder();
     }
 
 }
