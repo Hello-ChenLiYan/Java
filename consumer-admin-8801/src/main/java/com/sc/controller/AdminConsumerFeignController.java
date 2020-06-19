@@ -23,7 +23,6 @@ public class AdminConsumerFeignController {
 
 
     @PostMapping("queryAll")
-    @ResponseBody
     public Object queryAll(Integer page, Integer limit,AdminQuery bean){
         System.out.println(bean);
         return adminFeignService.queryAll(page,limit,bean);

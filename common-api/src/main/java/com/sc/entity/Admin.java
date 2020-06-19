@@ -17,12 +17,10 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-06-12 21:46:30
  */
-@Data
-@ToString
-@Accessors(chain = true)
-//@NoArgsConstructor
-//@AllArgsConstructor
-@Table("florist.admin")
+@Data //set和get方法
+@ToString //实现tostring方法
+@Accessors(chain = true)//链式表达式
+@Table("florist.admin")//指定数据库表名
 public class Admin implements Serializable {
     //Serializable简单的标识一个类的对象可以被序列化
 
