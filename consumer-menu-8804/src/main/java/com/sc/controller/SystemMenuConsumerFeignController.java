@@ -1,7 +1,6 @@
 package com.sc.controller;
 
 
-import com.sc.entity.Admin;
 import com.sc.entity.SystemMenu;
 import com.sc.service.SystemMenuFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("systemMenu/feign")
+@RequestMapping("SystemMenu/feign")
 public class SystemMenuConsumerFeignController {
   @Autowired
  private SystemMenuFeignService systemMenuFeignService;
@@ -41,26 +40,18 @@ public class SystemMenuConsumerFeignController {
         return systemMenuFeignService.delete(ids);
     }
 
-
-
     @GetMapping("/")
     public String toAdd(Model model) {
         model.addAttribute("bean", new SystemMenu());
         return "menu/menu_add";
     }
 
-    @PostMapping("save")
-    @ResponseBody
-    public Object save(SystemMenu bean){
-        System.out.println(bean);
-        return systemMenuFeignService.save(bean);
-    }
-
     @GetMapping("/{id}")
-    public String toEdit(@PathVariable(value ="id")Integer id, Model model) {
+    public String toEdit(@PathVariable Integer id, Model model) {
         System.out.println("id:::" + id);
         SystemMenu bean = systemMenuFeignService.getById(id);
         model.addAttribute("bean", bean);
+
         return "menu/menu_add";
     }
 }

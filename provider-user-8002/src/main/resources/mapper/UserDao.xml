@@ -20,7 +20,7 @@
     <select id="queryById" resultMap="UserMap">
         select
           id, account, password, pickName, age, sex, phone, email, address, reg_date, last_login_date
-        from flower.user
+        from florist.user
         where id = #{id}
     </select>
 
@@ -28,7 +28,7 @@
     <select id="queryAllByLimit" resultMap="UserMap">
         select
         id, account, password, pickName, age, sex, phone, email, address, reg_date, last_login_date
-        from flower.user
+        from florist.user
         <where>
             <if test="bean.id != null">
                 and id = #{bean.id}
@@ -71,7 +71,7 @@
     <select id="queryAll" resultMap="UserMap">
         select
         id, account, password, pickName, age, sex, phone, email, address, reg_date, last_login_date
-        from flower.user
+        from florist.user
         <where>
             <if test="bean.id != null">
                 and id = #{bean.id}
@@ -111,13 +111,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into flower.user(account, password, pickName, age, sex, phone, email, address, reg_date, last_login_date)
+        insert into florist.user(account, password, pickName, age, sex, phone, email, address, reg_date, last_login_date)
         values (#{account}, #{password}, #{pickName}, #{age}, #{sex}, #{phone}, #{email}, #{address}, #{regDate}, #{lastLoginDate})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update flower.user
+        update florist.user
         <set>
             <if test="account != null and account != ''">
                 account = #{account},
@@ -155,7 +155,7 @@
 
     <!--通过主键删除-->
     <delete id="delete">
-        delete from flower.user where id in
+        delete from florist.user where id in
         <foreach collection="ids" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
@@ -163,7 +163,7 @@
 
     <select id="login" resultMap="UserMap">
         select  *
-        from flower.user
+        from florist.user
         <where>
             <if test="account != null and account != ''">
                 and account = #{account}

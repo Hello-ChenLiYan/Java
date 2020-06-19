@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,7 +25,7 @@ public class UserConsumerController {
     private RestTemplate restTemplate;
     //提供一些便利的方法直接访问http请求
 
-    private String urlPrefix = "http://provider-user-8002";
+    private String urlPrefix = "http://provider-user";
 
     //登录
     @RequestMapping("login")
