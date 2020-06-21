@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html class="no-js" lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
-    <title>妈！我就要买这个！</title>
+    <title>商品详情</title>
 
     <!--=== Favicon ===-->
     <link rel="shortcut icon" th:href="@{/assets/img/favicon.ico}" type="image/x-icon" />
@@ -122,7 +121,6 @@
                 </div>
             </div>
             <!-- header middle area end -->
-        </div>
         <!-- main header start -->
 
         <!-- mobile header start -->
@@ -134,7 +132,7 @@
                         <div class="mobile-main-header">
                             <div class="mobile-logo">
                                 <a href="">
-                                    <img th:src="@{/assets/img/logo/logo.png}" alt="Brand Logo">
+                                    <img th:src="@{/assets/img/logo/logo.png}" alt="Brand Logo" src="" />
                                 </a>
                             </div>
                             <div class="mobile-menu-toggler">
@@ -155,11 +153,7 @@
             </div>
             <!-- mobile header top start -->
         </div>
-        <!-- mobile header end -->
-    </header>
-    <!-- end Header Area -->
 
-    <!-- off-canvas menu start -->
     <aside class="off-canvas-wrapper">
         <div class="off-canvas-overlay"></div>
         <div class="off-canvas-inner-content">
@@ -171,7 +165,9 @@
                 <!-- search box start -->
                 <div class="search-box-offcanvas">
                     <form>
-                        <input type="text" placeholder="Search Here...">
+                        <label>
+                            <input type="text" placeholder="Search Here...">
+                        </label>
                         <button class="search-btn"><i class="lnr lnr-magnifier"></i></button>
                     </form>
                 </div>
@@ -184,7 +180,7 @@
                     <nav>
                         <ul class="mobile-menu">
                             <li><a href="">Home</a></li>
-                                            <li><a th:href="@{/flower/feign/queryAllFlower}">Shop</a></li>
+                            <li><a th:href="@{/flower/feign/queryAllFlower}">Shop</a></li>
                         </ul>
                     </nav>
                     <!-- mobile menu navigation end -->
@@ -289,7 +285,7 @@
                                 <div class="col-lg-7">
                                     <div class="product-details-des">
                                         <br>
-                                        <h1 class="product-name"><div th:text="${session.flower.name}"/></h1>
+                                        <h1 class="product-name"><div th:text="${session.flower.name}"></div></h1>
                                         <div class="ratings d-flex">
                                             <span><i class="lnr lnr-star"></i></span>
                                             <span><i class="lnr lnr-star"></i></span>
@@ -310,11 +306,15 @@
                                         <!-- <div class="product-countdown" data-countdown="2019/07/25"></div> -->
                                         <div class="availability">
                                             <i class="fa fa-check-circle"></i>
-                                            <span><font size="5"><div style="float: left" th:text="${session.flower.stock}+'in stock'"/></font></span>
+                                            <span>
+                                                <font size="5">
+                                                    <div style="float: left" th:text="${session.flower.stock}+'in stock'"></div>
+                                                </font>
+                                            </span>
                                         </div>
                                         <br><br>
                                         <!--花语-->
-                                        <p class="pro-desc"><font size="3"><div th:text="${session.flower.floMean}"/></font></p>
+                                        <p class="pro-desc"><font size="3"><div th:text="${session.flower.floMean}"></div></font></p>
                                         <br><br>
                                         <!--购物车-->
                                         <form action="putCart" method="post">
@@ -343,53 +343,16 @@
         </div>
         </form>
 
-                <!--购物车JS-->
-                <script th:src="@{/assets/js/vendor.js}"></script>
-                <!-- Active Js -->
-                <script th:src="@{/assets/js/active.js}"></script>
-                <script type="text/javascript">
-                    function goCart() {
-                        document.putcartform.submit();
-                    }
-                </script>
-
-                <!--评论显示-->
-<!--                <div class="row" style="width: 800px;margin: 0px auto;margin-top: 200px">-->
-<!--                    <h2 style="margin-bottom: 30px">商品评价</h2>-->
-<!--                    <c:forEach items="${requestScope.get('commentList')}" var="comment">-->
-<!--                    <div style="width: 800px;margin-bottom: 20px">-->
-<!--                        <div class="layui-card" style="width: 800px;color:#c2c2c2 ">-->
-<!--                            <div class="layui-card-header">-->
-<!--                                    ${comment.getLoginName()}<p style="color: #c2c2c2;float:right;">${comment.getDate()}</p>-->
-<!--                            </div>-->
-<!--                            <div class="layui-card-body">-->
-<!--                                    ${comment.getComment()}-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    </c:forEach>-->
-<!--                    &lt;!&ndash;提交评论&ndash;&gt;-->
-<!--                    <div style="width: 600px;margin: 0px auto">-->
-<!--                        <form action="${ctx}/comment/flower" method="post" class="layui-form layui-form-pane">-->
-<!--                            <div class="layui-form-item layui-form-text">-->
-<!--                                <label class="layui-form-label" style="margin-bottom: 0px">对该商品进行评价</label>-->
-<!--                                <div class="layui-input-block" style="margin-top: 0px">-->
-<!--                                    <textarea name="comment" placeholder="请输入内容..." class="layui-textarea"></textarea>-->
-<!--                                </div>-->
-<!--                                <button type="submit" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-fluid" style="float: right">提交</button>-->
-<!--                            </div>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-            </div>
-        </div>
+        <!--购物车JS-->
+        <script th:src="@{/assets/js/vendor.js}"></script>
+        <!-- Active Js -->
+        <script th:src="@{/assets/js/active.js}"></script>
+        <script type="text/javascript">
+            function goCart() {
+                document.putcartform.submit();
+            }
+        </script>
     </main>
-    <!-- main wrapper end -->
-                            
-                    <!-- product details wrapper end -->
-
-        <!-- page main wrapper end -->
 
     <!-- Start Footer Area Wrapper -->
     <footer class="footer-wrapper">
@@ -486,7 +449,6 @@
         <div class="footer-bottom-area">
             <div class="container">
                 <div class="row align-items-center">
-                    </div>
                     <div class="col-md-6 order-1 order-md-2">
                         <div class="footer-social-link">
                             <a href="#"><i class="fa fa-twitter"></i></a>

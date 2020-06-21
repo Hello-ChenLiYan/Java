@@ -25,9 +25,9 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-vercode" th:for="captche"></label>
-                    <input type="text" name="code" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg" />
-                    <div style="width: 50% ;margin-left:30%;">
-                        <img id = "code" th:src="@{/validateCode}" class = "validateCode"/>
+                    <input type="text" name="code" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" />
+                    <div class="captcha-img">
+                        <img id = "code" th:src="@{/validateCode}" class = "validateCode" alt=""/>
                         <a href="javascript:refreshCode();">
                             刷新
                         </a>

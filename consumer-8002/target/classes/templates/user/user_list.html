@@ -138,7 +138,7 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 var index = layer.open({
-                    title: '添加管理员',
+                    title: '添加用户',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -183,7 +183,7 @@
             var data = obj.data;
             if (obj.event === 'edit') {
                 var index = layer.open({
-                    title: '编辑管理员',
+                    title: '编辑用户',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -204,7 +204,7 @@
                 });
                 return false;
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
+                layer.confirm('真的删除这条数据吗', function (index) {
                     // obj.del();
                     doDelete(data, data.id);
                     layer.close(index);

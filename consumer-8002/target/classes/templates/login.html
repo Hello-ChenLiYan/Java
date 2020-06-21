@@ -25,9 +25,12 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-vercode" th:for="captche"></label>
-                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg">
+                    <input type="text" name="code" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" />
                     <div class="captcha-img">
-                        <img id="captchaPic" th:src="@{/images/captcha.jpg}">
+                        <img id = "code" th:src="@{/validateCode}" class = "validateCode" alt=""/>
+                        <a href="javascript:refreshCode();">
+                            刷新
+                        </a>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -86,6 +89,52 @@
             });
         });
     });
+</script>
+
+<!-- 验证码刷新-->
+<script type="text/javascript">
+
+    function refreshCode(){
+        document.getElementById("code").src = "/validateCode?" + Math.random();
+    }
+</script>
+
+<!-- 第三点:记住密码功能，通过 cookie 来实现 -->
+<script type="text/javascript">
+    //把信息设置进去Cookie里面去
+    function setCookie(){
+        var account = $('#account').val();
+        var password = $('#password').val();
+        var aa = $("input[type='checkbox']").is(":checked");//获取是否选中
+        if(aa===true){//如果选中-->记住密码登录
+            $.cookie("account",account.trim(),7);//有效时间7天，也可以设置为永久，把时间去掉就好
+            $.cookie("passWord",password.trim(),7);
+        }else{//如果没选中-->不记住密码登录
+            $.cookie("passWord", "");
+            $.cookie("account", "");
+            alert("没有记住密码")
+        }
+    }
+
+    function getCookie(){ //获取cookie
+        var account = $.cookie("account"); //获取cookie中的用户名
+        var pwd =  $.cookie("password"); //获取cookie中的登陆密码
+        if(pwd){
+            //密码存在的话把“记住密码”复选框勾选住
+            $("[name='remember']").attr("checked","true");
+        }
+        if(account!==""){
+            //用户名存在的话把用户名填充到用户名文本框
+            $("#account").val(account);
+        }else{
+            $("#account").val("");
+        }
+        if(pwd!==""){//密码存在的话把密码填充到密码文本框
+            $("#password").val(pwd);
+        }else{
+            $("#password").val("");
+        }
+    }
 </script>
 </body>
 </html>
