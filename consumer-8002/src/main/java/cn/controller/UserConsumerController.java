@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -32,20 +34,35 @@ public class UserConsumerController {
 
     //登录
     @RequestMapping("login")
-    public String login(String account, String password, HttpSession session, Model model, HttpCookie cookie) {
+    public String login(String code,String account, String password, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
+
+        if(!code.equalsIgnoreCase(session.getAttribute("code").toString())) {
+            model.addAttribute("msg", "验证码错误");
+            return "login";
+        }
 
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         map.add("account", account);
         map.add("password", password);
         // 进行请求，并返回数据
-        restTemplate.postForObject(urlPrefix + "/user/login", map, String.class);
+        String user = restTemplate.postForObject(urlPrefix + "/user/login", map, String.class);
         if (map.isEmpty()) {
             model.addAttribute("msg", "账号或密码错误");
             return "login";
         }
         session.setAttribute("loginUser", account);
 
-
+        //勾选记住密码时使用cookie记住账户和密码否则只保存账户
+        String[] flag = request.getParameterValues("remember");
+        if (flag!=null && flag.length>0){
+            Cookie cookie = new Cookie("userCookie",account+"-"+password);
+            cookie.setMaxAge(60*60*24*7);//保存七天
+            response.addCookie(cookie);//添加cookie到服务器端
+        } else {//否则只保存账户
+            Cookie cookie = new Cookie("userCookie",account);
+            cookie.setMaxAge(60*60*24*7);//保存七天
+            response.addCookie(cookie);//添加cookie到服务器端
+        }
         System.out.println("account:::" + account + "，password:::" + password);
         return "index";
     }
