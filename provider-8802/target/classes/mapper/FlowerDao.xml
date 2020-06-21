@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.FlowerDao">
+
+    <resultMap type="cn.entity.Flower" id="FlowerMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="stock" column="stock" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="floMean" column="flo_mean" jdbcType="VARCHAR"/>
+        <result property="photo" column="photo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="FlowerMap">
+        select
+          id, name, type, stock, price, flo_mean, photo
+        from florist.flower
+        where id = #{id}
+    </select>
+
+    <!--查询单个-->
+    <select id="getByName" resultMap="FlowerMap">
+        select
+          id, name, type, stock, price, flo_mean, photo
+        from florist.flower
+        where name = #{name}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="FlowerMap">
+        select
+          id, name, type, stock, price, flo_mean, photo
+        from florist.flower
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="stock != null">
+                and stock = #{stock}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="floMean != null and floMean != ''">
+                and flo_mean = #{floMean}
+            </if>
+            <if test="photos != null and photos != ''">
+                and photos = #{photos}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="FlowerMap">
+        select
+          id, name, type, stock, price, flo_mean, photo
+        from florist.flower
+        <where>
+            <if test="bean.id != null">
+                and id = #{bean.id}
+            </if>
+            <if test="bean.name != null and bean.name != ''">
+                and name like concat('%',#{bean.name},'%')
+            </if>
+            <if test="bean.type != null and bean.type != ''">
+                and type = #{bean.type}
+            </if>
+            <if test="bean.floMean != null and bean.floMean != ''">
+                and flo_mean = #{bean.floMean}
+            </if>
+        </where>
+    </select>
+
+    <delete id="delete">
+        delete
+        from florist.flower
+        where id in
+        <foreach item="id" collection="id" open="(" close=")" separator="," >
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

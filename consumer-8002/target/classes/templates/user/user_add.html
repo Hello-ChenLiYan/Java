@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>用户添加</title>
+    <div th:replace="~{common::css}"></div>
+	<style>
+		body {
+			background-color: #ffffff;
+		}
+	</style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+	<form class="layui-form" action="" method="post" th:object="${bean}">
+		<input type="hidden" name="id">
+		<div class="layui-form-item">
+			<label class="layui-form-label required">账号</label>
+			<div class="layui-input-block">
+				<input type="text" name="account" lay-verify="required" lay-reqtext="账号不能为空" placeholder="请输入账号"
+				      class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label required">手机</label>
+			<div class="layui-input-block">
+				<input type="number" name="phone" lay-verify="required" lay-reqtext="手机不能为空" placeholder="请输入手机"
+				       class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label required">姓名</label>
+			<div class="layui-input-block">
+				<input type="text" name="pickName" lay-verify="required" lay-reqtext="姓名不能为空" placeholder="请输入姓名"
+				        class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label required">性别</label>
+			<div class="layui-input-block">
+				<input type="radio" name="gender" th:value="1" title="男" >
+				<input type="radio" name="gender" th:value="0" title="女" >
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label required">邮箱</label>
+			<div class="layui-input-block">
+				<input type="text" name="email" lay-verify="required" lay-reqtext="邮箱不能为空" placeholder="请输入邮箱"
+					    class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label required">地址</label>
+			<div class="layui-input-block">
+				<input type="text" name="address" lay-verify="required" lay-reqtext="地址不能为空" placeholder="请输入地址"
+					    class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div th:replace="~{common::js}"></div>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            //使用Jquery的ajax提交数据
+            $.post("/user/consumer/insert", data.field, function (data) {
+                console.log(data);
+            })
+
+			// 关闭弹出层
+            layer.close();
+
+            var iframeIndex = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(iframeIndex);
+        });
+
+        return false;
+    });
+</script>
+</body>
+</html>

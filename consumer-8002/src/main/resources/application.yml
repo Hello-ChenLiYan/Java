@@ -1,0 +1,36 @@
+server:
+  port: 8002
+  max-http-header-size: 20480
+---
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7002/eureka/ #配置注册中⼼地址
+---
+info:
+  remark: 这是一个信息消费者
+  author: liyan
+---
+spring:
+  application:
+    name: consumer
+---
+spring:
+  thymeleaf:
+    suffix: .html
+    servlet:
+      content-type: text/html
+    mode: LEGACYHTML5
+    cache: false
+---
+ribbon:
+  eureka:
+    enabled: true
+---
+spring:
+  main:
+    allow-bean-definition-overriding: true

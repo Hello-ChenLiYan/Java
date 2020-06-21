@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/provider-8802/src/main/resources/mapper/AdminDao.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/provider-8802/src/main/resources/mapper/FlowerDao.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/provider-8802/src/main/resources/mapper/SystemMenuDao.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/provider-8802/src/main/resources/mapper/UserDao.xml" dialect="GenericSQL" />
+  </component>
+</project>
