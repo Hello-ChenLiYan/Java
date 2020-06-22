@@ -27,8 +27,10 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label required">菜单名称</label>
-                    <input type="text" name="title" lay-verify="required" lay-reqtext="菜单名称不能为空" placeholder="请输入菜单名称"
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="required" lay-reqtext="菜单名称不能为空" placeholder="请输入菜单名称"
                            th:value="*{title}" class="layui-input">
+                    </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label required">链接</label>

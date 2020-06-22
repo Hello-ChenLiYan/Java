@@ -27,8 +27,10 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label required">类型</label>
-            <input type="text" name="type" placeholder="请输入类型"
+            <div class="layui-input-block">
+                <input type="text" name="type" placeholder="请输入类型"
                    th:value="*{type}" class="layui-input">
+            </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label required">库存</label>
