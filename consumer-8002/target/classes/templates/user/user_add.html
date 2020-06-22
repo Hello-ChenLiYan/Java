@@ -18,21 +18,21 @@
 			<label class="layui-form-label required">账号</label>
 			<div class="layui-input-block">
 				<input type="text" name="account" lay-verify="required" lay-reqtext="账号不能为空" placeholder="请输入账号"
-				      class="layui-input">
+				     th:value="*{account}" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label required">手机</label>
 			<div class="layui-input-block">
 				<input type="number" name="phone" lay-verify="required" lay-reqtext="手机不能为空" placeholder="请输入手机"
-				       class="layui-input">
+				      th:value="*{phone}" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label required">姓名</label>
 			<div class="layui-input-block">
 				<input type="text" name="pickName" lay-verify="required" lay-reqtext="姓名不能为空" placeholder="请输入姓名"
-				        class="layui-input">
+				      th:value="*{pickName}"  class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -46,14 +46,14 @@
 			<label class="layui-form-label required">邮箱</label>
 			<div class="layui-input-block">
 				<input type="text" name="email" lay-verify="required" lay-reqtext="邮箱不能为空" placeholder="请输入邮箱"
-					    class="layui-input">
+					  th:value="*{email}"  class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label required">地址</label>
 			<div class="layui-input-block">
 				<input type="text" name="address" lay-verify="required" lay-reqtext="地址不能为空" placeholder="请输入地址"
-					    class="layui-input">
+					   th:value="*{address}" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">

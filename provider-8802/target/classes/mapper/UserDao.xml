@@ -6,7 +6,7 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="account" column="account" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
-        <result property="pickname" column="pickName" jdbcType="VARCHAR"/>
+        <result property="pickName" column="pickName" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>
         <result property="sex" column="sex" jdbcType="INTEGER"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
@@ -112,7 +112,7 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into florist.user(account, password, pickName, age, sex, phone, email, address, reg_date, last_login_date)
-        values (#{account}, #{password}, #{pickname}, #{age}, #{sex}, #{phone}, #{email}, #{address}, #{regDate}, #{lastLoginDate})
+        values (#{account}, #{password}, #{pickName}, #{age}, #{sex}, #{phone}, #{email}, #{address}, #{regDate}, #{lastLoginDate})
     </insert>
 
     <!--通过主键修改数据-->
@@ -126,7 +126,7 @@
                 password = #{password},
             </if>
             <if test="pickName != null and pickName != ''">
-                pickName = #{pickname},
+                pickName = #{pickName},
             </if>
             <if test="age != null">
                 age = #{age},
