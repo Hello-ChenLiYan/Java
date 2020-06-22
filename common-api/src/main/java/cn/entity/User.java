@@ -40,7 +40,7 @@ public class User implements Serializable {
     /**
     * 昵称
     */
-    private String pickname;
+    private String pickName;
     /**
     * 年龄
     */
