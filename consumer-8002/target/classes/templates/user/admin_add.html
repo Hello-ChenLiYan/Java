@@ -27,8 +27,10 @@
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label required">密码</label>
-			<input type="password" name="password" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码"
+			<div class="layui-input-block">
+				<input type="password" name="password" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码"
 			       th:value="*{password}" class="layui-input">
+			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label required">手机</label>

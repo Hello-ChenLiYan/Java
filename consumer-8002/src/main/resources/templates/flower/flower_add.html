@@ -34,8 +34,10 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label required">库存</label>
-            <input type="number" name="stock" placeholder="请输入库存"
-                   th:value="*{stock}" class="layui-input">
+            <div class="layui-input-block">
+                <input type="number" name="stock" placeholder="请输入库存"
+                       th:value="*{stock}" class="layui-input">
+            </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label required">价格</label>
